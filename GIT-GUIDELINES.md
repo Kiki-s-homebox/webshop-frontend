@@ -6,7 +6,14 @@
 3. [Rebasing](#rebasing)
 4. [Pull Requests to Main](#pull-requests-to-main)
 5. [Communication](#communication)
-6. [Testing](#testing)
+6. [Linting](#linting)
+7. [Testing](#testing)
+8. [Code review guidelines](#review-guidelines)
+9. [Bugs](#bugs)
+10. [Security](#security)
+11. [Comments](#comments)
+12. [Backlog & planning](#backlog)
+13. [CI/CD](#CI/CD)
 
 ### Committing <a name="committing"></a>
 - **Meaningful Commit Messages**: Write clear and descriptive commit messages.
@@ -57,7 +64,7 @@ that you do not remove other peoples work!
 ### Communication <a name="communication"></a>
 - **Telegram/Chat**: Maintain open communication channels with team members. Use TG to discuss project-related matters. Ask always if you are unsure about anything!
 
-- **Meetings**: On mondays 18.00 team meetings. 
+- **Meetings**: On mondays 18.00 team meetings. Bi-Weekly srint change ceremonies
 
 - **Document Important Decisions** This helps in the future to track changes!
 
@@ -71,6 +78,50 @@ that you do not remove other peoples work!
 ### Testing <a name="testing"></a>
 - **Test your own code**: Before merging the code to main your code needs to be tested. Testing is to be included in PR to main. 
 
-- **Testing**: Testing is to be done with Jest/React-testing-tool.
+- **Testing**: Testing is to be done with Jest/React-testing-tool. <- Proposed toolset
 
 - **More details**: To be anounced
+
+### **Code Review Guidelines** <a name="review-guidelines"></a>
+
+   - **Code Review Checklist**: 
+    - code readability: Code follows current linting rules
+    - adherence to coding standards: Reasonable variable names etc. 
+
+   - **Reviewer Responsibilities**:
+    - Review carefully but there is no need to test it on your own machine if unitests and linting are passing
+    - Provide concrete feedback. If somehting is to be improved tag lines etc.
+    - Respect the author's work we are here still learning things :).
+
+   - **Author Responsibilities**: 
+    - Be open to feedback. The best ideas are born when cooperating
+    - make requested changes or explain youe solution if you think its better
+    - Address comments in 2 days, the project goes on
+
+### **Bugs** <a name="bugs"></a>
+
+   - **How to report bugs**: Create a ticket and notify group on telegram. Try to estimate how critical the bug is since it affects on the fixing time
+
+
+### **Security Best Practices** <a name="security"></a>
+
+   - **Security Guidelines**: 
+     - Try to write secure code
+     - Do not add API keys to github.
+     - Environmental variables is safe space for keys
+     - Do not install unsecure packest from npm. etc
+     - npm shows some flags about security of the packages, take a look on those if they require some action.
+
+### **Commenting code** <a name="comments"></a>
+
+   - **Rules**: 
+    1. Rule: Do not comment code. Add notes to commits
+    2. Execption to rule 1. If something aboslutely requires commenting you may do it but it should not be added to main
+
+### **Backlog and Planning** <a name="backlog"></a>
+
+   - **Backlog**: Backlog can be found from [Trello](https://trello.com/b/6FLJUeRF/kikis-home-box)
+
+### **Continous intergation and continous deployment** <a name="CI/CD"></a>
+
+   - **CI**: At the moment we have access GitHub's free organization resources. This means that we have access to some online runners. More information about organizations and their offered properties can be found on [here](https://github.com/organizations/Kiki-s-homebox/billing/plans)
