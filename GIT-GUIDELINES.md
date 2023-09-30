@@ -13,9 +13,9 @@
 10. [Security](#security)
 11. [Comments](#comments)
 12. [Backlog & planning](#backlog)
-13. [CI/CD](#CI/CD)
+13. [Continous intergation and continous deployment](#ci-cd)
 
-### Committing <a name="committing"></a>
+### 1. Committing <a name="committing"></a>
 - **Meaningful Commit Messages**: Write clear and descriptive commit messages.
   ```shell
   Good: "Taskname: Update user login validation"
@@ -28,12 +28,12 @@
   
 - **Regular Commits**: Commit your work frequently to avoid large, hard-to-review changes.
 
-### Branching <a name="branching"></a>
+### 2. Branching <a name="branching"></a>
 - **Descriptive Branch Names**: Use task names from trello as branch names. 
   ```shell
   Good with subtask: Taskname-subtaskname 
   Good without subtask: Taskname
-  Avoid generic names ex.: new-feature
+  Avoid generic names: new-feature
   ```
 
 - **Task Branches**: Create separate feature branches for each new trello task. This keeps changes isolated and simplifies merging.
@@ -42,7 +42,7 @@
 
 - **Main Branch**: Is protected to to prevent direct pushes. Code to main goes through pull requests. See [Pull Requests to Main](#pull-requests-to-main).
 
-### Rebasing <a name="rebasing"></a>
+### 3. Rebasing <a name="rebasing"></a>
 - **Rebase Instead of Merge**: Use `git rebase` to incorporate changes from the main branch into your feature branch, instead of merging. This keeps your history linear and makes it easier to resolve conflicts. Remeber to pull code before this operation.
   ```shell
   git checkout feature-branch
@@ -52,7 +52,7 @@
 - **Resolve Conflicts**: If conflicts occur during a rebase, resolve them promptly. Communicate with team members if any questions to raise. This makes sure
 that you do not remove other peoples work!
 
-### Pull Requests to Main <a name="pull-requests-to-main"></a>
+### 4. Pull Requests to Main <a name="pull-requests-to-main"></a>
 - **Open Pull Requests (PRs)**: Create a PR when you're ready to merge your changes into the main branch. Include a clear title == branchname == ticket and description of what the PR accomplishes. Write notes if something is needed to consider while reviewing your PR.
   
 - **Code Review**: Request code reviews from at least one (1) team member(s). Address feedback and make necessary changes before merging.
@@ -63,67 +63,69 @@ that you do not remove other peoples work!
 
 - **Labels**: You are strongly advised to add labels to your PRs. They make it easier to catgorize wheter the pull request is related to documentation, feature or GitHub pipelines itself. 
 
-### Communication <a name="communication"></a>
+### 5. Communication <a name="communication"></a>
 - **Telegram/Chat**: Maintain open communication channels with team members. Use TG to discuss project-related matters. Ask always if you are unsure about anything!
 
 - **Meetings**: On mondays 18.00 team meetings. Bi-Weekly sprint change ceremonies
 
 - **Document Important Decisions** This helps in the future to track changes!
 
-### Linting <a name="linting"></a>
-- **Linting**: Your code will be linted using ESlint 
+### 6. Linting <a name="linting"></a>
+- **Linting**: Your code will be linted using ESlint tool 
 
-- **Linters** needs to be passed in order to merge.
+- **Linters** need to be passed before PR can be accepted.
 
 - **More details**: To be anounced
 
-### Testing <a name="testing"></a>
+### 7. Testing <a name="testing"></a>
 - **Test your own code**: Before merging the code to main your code needs to be tested. Testing is to be included in PR to main. 
 
 - **Testing**: Testing is to be done with Jest/React-testing-tool. <- Proposed toolset
 
 - **More details**: To be anounced
 
-### **Code Review Guidelines** <a name="review-guidelines"></a>
+### 8. **Code Review Guidelines** <a name="review-guidelines"></a>
 
    - **Code Review Checklist**: 
-    - code readability: Code follows current linting rules
-    - adherence to coding standards: Reasonable variable names etc. 
+     - code readability: Code follows current linting rules
+     - adherence to coding standards: Reasonable variable names etc. 
 
    - **Reviewer Responsibilities**:
-    - Review carefully but there is no need to test it on your own machine if unitests and linting are passing
-    - Provide concrete feedback. If somehting is to be improved tag lines etc.
-    - Respect the author's work we are here still learning things :).
+     - Review carefully but there is no need to test it on your own machine if unitests and linting are passing
+     - Provide concrete feedback. If somehting is to be improved tag lines etc.
+     - Respect the author's work we are here still learning things :).
 
    - **Author Responsibilities**: 
-    - Be open to feedback. The best ideas are born when cooperating
-    - make requested changes or explain youe solution if you think its better
-    - Address comments in 2 days, the project goes on
+     - Be open to feedback. The best ideas are born when cooperating
+     - make requested changes or explain youe solution if you think its better
+     - Address comments in 2 days, the project goes on
 
-### **Bugs** <a name="bugs"></a>
+### 9. **Bugs** <a name="bugs"></a>
 
-   - **How to report bugs**: Create a ticket on trello and notify group on telegram. Try to estimate how critical the bug is since it affects on the fixing time
+   - **How to report bugs**: 
+     - Create a ticket on trello and notify group on telegram. 
+     - Try to estimate how critical the bug is since it affects on the fixing time
 
 
-### **Security Best Practices** <a name="security"></a>
+### 10. **Security Best Practices** <a name="security"></a>
 
    - **Security Guidelines**: 
-     - Try to write secure code
-     - Do not add API keys to github.
-     - Environmental variables is safe space for keys
-     - Do not install unsecure packest from npm. etc
+     - Aim to write secure code.
+     - Do not add API keys to GitHub the repository is public.
+     - Environmental variables is safe space for keys or any confidetntial data.
+     - Do not install unsecure packages from npm. etc
      - npm shows some flags about security of the packages, take a look on those if they require some action.
 
-### **Commenting code** <a name="comments"></a>
+### 11. **Commenting code** <a name="comments"></a>
 
    - **Rules**: 
-    1. Rule: Do not comment code. Add notes to commits
-    2. Execption to rule 1. If something aboslutely requires commenting you may do it but it should not be added to main
+     1. Rule: Do not comment code. Add notes to commits
+     2. Execption to rule 1. If something aboslutely requires commenting you may do it but it should not be added to main
 
-### **Backlog and Planning** <a name="backlog"></a>
+### 12. **Backlog and Planning** <a name="backlog"></a>
 
    - **Backlog**: Backlog can be found from [Trello](https://trello.com/b/6FLJUeRF/kikis-home-box)
 
-### **Continous intergation and continous deployment** <a name="CI/CD"></a>
+### 13. **Continous intergation and continous deployment** <a name="ci-cd"></a>
 
    - **CI**: At the moment we have access GitHub's free organization resources. This means that we have access to some online runners. More information about organizations and their offered properties can be found on [here](https://github.com/organizations/Kiki-s-homebox/billing/plans)
