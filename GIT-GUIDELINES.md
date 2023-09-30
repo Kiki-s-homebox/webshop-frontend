@@ -28,26 +28,37 @@
   
 - **Regular Commits**: Commit your work frequently to avoid large, hard-to-review changes.
 
+- **Committing frequently**: Commit frequently to avoid large, hard-to-review changes.
+
+- **Typos and small details**: In cases where you realize there are typos or small details that you are not happy with but the changes are too small(only few lines) for creating another commit, you can add the changes and "recreate" the previous commit by
+  ```shell
+  git commit --amend
+  git push --force-with-lease
+  ```
+
+
 ### 2. Branching <a name="branching"></a>
 - **Descriptive Branch Names**: Use task names from trello as branch names. 
   ```shell
+  Before creating branch use: git checkout main 
   Good with subtask: Taskname-subtaskname 
   Good without subtask: Taskname
   Avoid generic names: new-feature
   ```
 
-- **Task Branches**: Create separate feature branches for each new trello task. This keeps changes isolated and simplifies merging.
+- **Task Branches**: Create separate feature branches for each new trello task. This keeps changes isolated and simplifies merging. Use **only** main as source for new branches.
 
 - **Sub-task names** are not mandatory unless they are big enough. If a subtask change contains more than 200 lines of code create a new branch for them as well!
 
 - **Main Branch**: Is protected to to prevent direct pushes. Code to main goes through pull requests. See [Pull Requests to Main](#pull-requests-to-main).
 
 ### 3. Rebasing <a name="rebasing"></a>
-- **Rebase Instead of Merge**: Use `git rebase` to incorporate changes from the main branch into your feature branch, instead of merging. This keeps your history linear and makes it easier to resolve conflicts. Remeber to pull code before this operation.
+- **Rebase Instead of Merge**: Use `git rebase -i` to incorporate changes from the main branch into your feature branch, instead of merging. This keeps your history linear and makes it easier to resolve conflicts. Remeber to fetch code before this operation.
   ```shell
   git checkout feature-branch
   git rebase main
   ```
+- **Pushing to dev branch after rebase**: Use the tag --force-with-lease to push after rebasing
 
 - **Resolve Conflicts**: If conflicts occur during a rebase, resolve them promptly. Communicate with team members if any questions to raise. This makes sure
 that you do not remove other peoples work!
@@ -70,6 +81,8 @@ that you do not remove other peoples work!
 
 - **Document Important Decisions** This helps in the future to track changes!
 
+- **Working together** is important. Let others know what you are working on. If you will be working some topic close to another persons topics let them know so you can work togerher and avoid conflicts.
+
 ### 6. Linting <a name="linting"></a>
 - **Linting**: Your code will be linted using ESlint tool 
 
@@ -78,11 +91,19 @@ that you do not remove other peoples work!
 - **More details**: To be anounced
 
 ### 7. Testing <a name="testing"></a>
-- **Test your own code**: Before merging the code to main your code needs to be tested. Testing is to be included in PR to main. 
+- **Test your own code**: Before merging the code to main your code needs to be tested on your own machine with unittests. Testing is to be included in PR to main. 
 
-- **Testing**: Testing is to be done with Jest/React-testing-tool. <- Proposed toolset
+- **Unit testing**: Testing is to be done with Jest/React-testing-tool. <- Proposed toolset
 
-- **More details**: To be anounced
+- **Integration testing**: To be agreed.
+
+- **Acceptance testing**: To be agreed
+
+- **End to End testing**: To be agreed
+
+- **Selenium testing**: To be agreed
+
+- **More details**: ...
 
 ### 8. **Code Review Guidelines** <a name="review-guidelines"></a>
 
