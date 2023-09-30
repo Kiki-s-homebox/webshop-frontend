@@ -53,18 +53,20 @@
 that you do not remove other peoples work!
 
 ### Pull Requests to Main <a name="pull-requests-to-main"></a>
-- **Open Pull Requests (PRs)**: Create a PR when you're ready to merge your changes into the main branch. Include a clear title == branchname == ticket and description of what the PR accomplishes. Write notes if something is needed to consider while reviewing
+- **Open Pull Requests (PRs)**: Create a PR when you're ready to merge your changes into the main branch. Include a clear title == branchname == ticket and description of what the PR accomplishes. Write notes if something is needed to consider while reviewing your PR.
   
-- **Code Review**: Request code reviews from at least one (1) team member(s). Address feedback and make necessary changes before merging. Your code needs to be acceped again if there is need to make modifications
+- **Code Review**: Request code reviews from at least one (1) team member(s). Address feedback and make necessary changes before merging.
 
 - **Pass CI/CD**: Ensure that all Continuous Integration/Continuous Deployment checks pass before merging. There will be at least two phases. linting and unit testing.
 
 - **Squash Commits**: Squash and rebase your branch commits into a single, well-organized commit before merging into the main branch, where you will describle changes on high level.
 
+- **Labels**: You are strongly advised to add labels to your PRs. They make it easier to catgorize wheter the pull request is related to documentation, feature or GitHub pipelines itself. 
+
 ### Communication <a name="communication"></a>
 - **Telegram/Chat**: Maintain open communication channels with team members. Use TG to discuss project-related matters. Ask always if you are unsure about anything!
 
-- **Meetings**: On mondays 18.00 team meetings. Bi-Weekly srint change ceremonies
+- **Meetings**: On mondays 18.00 team meetings. Bi-Weekly sprint change ceremonies
 
 - **Document Important Decisions** This helps in the future to track changes!
 
@@ -100,7 +102,7 @@ that you do not remove other peoples work!
 
 ### **Bugs** <a name="bugs"></a>
 
-   - **How to report bugs**: Create a ticket and notify group on telegram. Try to estimate how critical the bug is since it affects on the fixing time
+   - **How to report bugs**: Create a ticket on trello and notify group on telegram. Try to estimate how critical the bug is since it affects on the fixing time
 
 
 ### **Security Best Practices** <a name="security"></a>
