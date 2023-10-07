@@ -14,6 +14,7 @@
 11. [Comments](#comments)
 12. [Backlog & planning](#backlog)
 13. [Continous intergation and continous deployment](#ci-cd)
+14. [Offline Pipelines](#offline-pipelines)
 
 ### 1. Committing <a name="committing"></a>
 - **Meaningful Commit Messages**: Write clear and descriptive commit messages.
@@ -35,7 +36,7 @@
   git commit --amend
   git push --force-with-lease
   ```
-- **Before committing**: Before committing you can lint and fix your code against linters by running `npm run precommit`.
+- **Before committing**: Before committing you can lint and fix your code against linters by running `npm run precommit`. This is very usefull tool and it combines prettier and ESLint checks. (Prettier is a code refactoring tool that makes it ESLint friendly)
 
 
 ### 2. Branching <a name="branching"></a>
@@ -151,3 +152,7 @@ that you do not remove other peoples work!
 ### 13. **Continous intergation and continous deployment** <a name="ci-cd"></a>
 
    - **CI**: At the moment we have access GitHub's free organization resources. This means that we have access to some online runners. More information about organizations and their offered properties can be found on [here](https://github.com/organizations/Kiki-s-homebox/billing/plans)
+
+### 14. **Continous intergation and continous deployment** <a name="offline-pipelines"></a>
+
+   - **Offline Pipelines**: Can be run locally with docker and act. More detailed instructions about the usage of act is [here](https://github.com/nektos/act). With act you are able to run the pipeline locally with your own machine similarly as they are being run on GitHub. This can be helpfull if your code does not work with github and you want to start debugging it.
