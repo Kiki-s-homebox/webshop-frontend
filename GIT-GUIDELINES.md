@@ -35,6 +35,7 @@
   git commit --amend
   git push --force-with-lease
   ```
+- **Before committing**: Before committing you can lint and fix your code against linters by running `npm run precommit`.
 
 
 ### 2. Branching <a name="branching"></a>
