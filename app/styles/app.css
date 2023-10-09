@@ -128,14 +128,12 @@ aside li {
 * --------------------------------------------------
 */
 .header {
-  align-items: center;
-  background: #fff;
+  background: #dfdfd8;
   display: flex;
-  height: var(--header-height);
   padding: 0 1rem;
-  position: sticky;
   top: 0;
   z-index: 1;
+  flex-direction: column;
 }
 
 .header-menu-mobile-toggle {
@@ -148,14 +146,16 @@ aside li {
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .header-menu-desktop {
   display: none;
   grid-gap: 1rem;
+  padding-bottom: 0.8rem;
   @media (min-width: 45em) {
     display: flex;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
     margin-left: 3rem;
   }
 }
