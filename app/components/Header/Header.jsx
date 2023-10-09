@@ -1,15 +1,28 @@
 import {Await, NavLink, useMatches} from '@remix-run/react';
 import {Suspense} from 'react';
+import logo from './kikiHomeBoxLogo.avif';
+import './header.css';
+import {BsSearch, BsPerson, BsCart3} from 'react-icons/bs';
 
 export function Header({header, isLoggedIn, cart}) {
-  const {shop, menu} = header;
+  const {menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu menu={menu} viewport="desktop" />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      <div className="header1">
+        <SearchToggle className="left-component" />
+        <NavLink
+          className="middle-component"
+          prefetch="intent"
+          to="/"
+          style={activeLinkStyle}
+        >
+          <img src={logo} className="image" alt="Kiki's Home Box"></img>
+        </NavLink>
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </div>
+      <div className="header2">
+        <HeaderMenu className="left-component" menu={menu} viewport="desktop" />
+      </div>
     </header>
   );
 }
@@ -71,9 +84,8 @@ function HeaderCtas({isLoggedIn, cart}) {
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        {isLoggedIn ? 'Account' : 'Sign in'}
+        {isLoggedIn ? 'Account' : <BsPerson style={{fontSize: '28px'}} />}
       </NavLink>
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );
@@ -88,11 +100,20 @@ function HeaderMenuMobileToggle() {
 }
 
 function SearchToggle() {
-  return <a href="#search-aside">Search</a>;
+  return (
+    <a href="#search-aside">
+      {' '}
+      <BsSearch style={{fontSize: '28px'}} />{' '}
+    </a>
+  );
 }
 
 function CartBadge({count}) {
-  return <a href="#cart-aside">Cart {count}</a>;
+  return (
+    <a href="#cart-aside" style={{textDecoration: 'none'}}>
+      <BsCart3 style={{fontSize: '28px'}} /> {count}
+    </a>
+  );
 }
 
 function CartToggle({cart}) {
