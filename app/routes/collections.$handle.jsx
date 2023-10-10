@@ -23,8 +23,15 @@ export async function loader({request, params, context}) {
     return redirect('/collections');
   }
 
+  if (handle === 'all') {
+    return redirect('/catalogue');
+  }
+
   const {collection} = await storefront.query(COLLECTION_QUERY, {
-    variables: {handle, ...paginationVariables},
+    variables: {
+      handle,
+      ...paginationVariables,
+    },
   });
 
   if (!collection) {
