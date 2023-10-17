@@ -24,7 +24,7 @@ export async function loader({request, params, context}) {
   }
 
   if (handle === 'all') {
-    return redirect('/catalogue');
+    return redirect('/products');
   }
 
   const {collection} = await storefront.query(COLLECTION_QUERY, {
