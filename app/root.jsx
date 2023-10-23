@@ -171,7 +171,7 @@ export function ErrorBoundary() {
  *  );
  *  ```
  *  */
-async function validateCustomerAccessToken(session, customerAccessToken) {
+export async function validateCustomerAccessToken(session, customerAccessToken) {
   let isLoggedIn = false;
   const headers = new Headers();
   if (!customerAccessToken?.accessToken || !customerAccessToken?.expiresAt) {
@@ -261,3 +261,7 @@ const FOOTER_QUERY = `#graphql
   }
   ${MENU_FRAGMENT}
 `;
+
+export const forTestingOnly = {
+  validateCustomerAccessToken,
+}

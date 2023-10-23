@@ -1,10 +1,8 @@
-// Import necessary functions and components
 import {
     links,
     loader,
     shouldRevalidate,
-    ErrorBoundary,
-    validateCustomerAccessToken,
+    forTestingOnly,
   } from '../root'; // Update the path accordingly
 
   // as a note: Jest cannot handle SVGs properly. You need to mock the SVGs to non-existent
@@ -57,11 +55,11 @@ import {
         };
   
         const data = await loader({ context });
-        expect(data).toHaveProperty('cart');
-        expect(data).toHaveProperty('footer');
-        expect(data).toHaveProperty('header');
-        expect(data).toHaveProperty('isLoggedIn');
-        expect(data).toHaveProperty('publicStoreDomain');
+        expect(data.data).toHaveProperty('cart');
+        expect(data.data).toHaveProperty('footer');
+        expect(data.data).toHaveProperty('header');
+        expect(data.data).toHaveProperty('isLoggedIn');
+        expect(data.data).toHaveProperty('publicStoreDomain');
       });
     });
   
@@ -75,20 +73,12 @@ import {
           accessToken: 'token',
           expiresAt: new Date().toISOString(),
         };
-        const result = await validateCustomerAccessToken(session, customerAccessToken);
+        const result = await forTestingOnly.validateCustomerAccessToken(session, customerAccessToken);
         expect(result).toHaveProperty('isLoggedIn');
         expect(result).toHaveProperty('headers');
       });
     });
   
-    // Add more tests for other functions if necessary
-  });
-  
-  describe('App Component', () => {
-    // Write tests for the App component here
-  });
-  
-  describe('ErrorBoundary Component', () => {
-    // Write tests for the ErrorBoundary component here
+    // Continue here
   });
   
