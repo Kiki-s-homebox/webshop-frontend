@@ -1,29 +1,23 @@
 import {Await, NavLink, useMatches} from '@remix-run/react';
 import {Suspense} from 'react';
-import logo from './kikiHomeBoxLogo.avif';
+import logo from './Pictures/kikiHomeBoxLogo.avif';
 import './header.css';
 import {BsSearch, BsPerson, BsCart3} from 'react-icons/bs';
+import HeaderTop from './HeaderTop';
 
 export function Header({header, isLoggedIn, cart}) {
   const {menu} = header;
   return (
-    <header className="header">
-      <div className="header1">
-        <SearchToggle className="left-component" />
-        <NavLink
-          className="middle-component"
-          prefetch="intent"
-          to="/"
-          style={activeLinkStyle}
-        >
+    <div>
+      <HeaderTop />
+      <header className="header">
+        <NavLink prefetch="intent" to="/" style={activeLinkStyle}>
           <img src={logo} className="image" alt="Kiki's Home Box"></img>
         </NavLink>
+        <HeaderMenu menu={menu} viewport="desktop" />
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-      </div>
-      <div className="header2">
-        <HeaderMenu className="left-component" menu={menu} viewport="desktop" />
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }
 
@@ -83,8 +77,9 @@ function HeaderCtas({isLoggedIn, cart}) {
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
+      <SearchToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        {isLoggedIn ? 'Account' : <BsPerson style={{fontSize: '28px'}} />}
+        {isLoggedIn ? 'Account' : <BsPerson style={{fontSize: '20px'}} />}
       </NavLink>
       <CartToggle cart={cart} />
     </nav>
@@ -103,7 +98,7 @@ function SearchToggle() {
   return (
     <a href="#search-aside">
       {' '}
-      <BsSearch style={{fontSize: '28px'}} />{' '}
+      <BsSearch style={{fontSize: '20px'}} />{' '}
     </a>
   );
 }
@@ -111,7 +106,7 @@ function SearchToggle() {
 function CartBadge({count}) {
   return (
     <a href="#cart-aside" style={{textDecoration: 'none'}}>
-      <BsCart3 style={{fontSize: '28px'}} /> {count}
+      <BsCart3 style={{fontSize: '20px'}} /> {count}
     </a>
   );
 }
