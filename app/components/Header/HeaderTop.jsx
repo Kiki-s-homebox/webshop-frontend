@@ -1,8 +1,12 @@
+import './header.css';
+
 const HeaderTop = () => {
   return (
-    <div style={{backgroundColor: '#855832', height: '2.5rem'}}>
+    <div className="header-top">
       <div>
-        <p>Example text</p>
+        <p>
+          <b>Free deliveries in the Pirkaanma region</b>
+        </p>
       </div>
     </div>
   );
