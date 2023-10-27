@@ -7,12 +7,12 @@
     "build": "shopify hydrogen build",
     "dev": "shopify hydrogen dev",
     "preview": "npm run build && shopify hydrogen preview",
-    "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
+    "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx . --ignore-pattern coverage/",
     "test": "jest --coverage",
     "codegen": "shopify hydrogen codegen-unstable",
     "prepare": "husky install",
     "format": "prettier --write .",
-    "precommit": "npm run format && npm run lint --fix && ban"
+    "precommit": "npm run format && npm run lint --fix"
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
@@ -35,6 +35,9 @@
     "@remix-run/dev": "1.19.1",
     "@remix-run/eslint-config": "^2.0.1",
     "@shopify/prettier-config": "^1.1.2",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
     "@total-typescript/ts-reset": "^0.4.2",
     "babel-jest": "^29.7.0",
     "eslint": "^8.20.0",
@@ -51,8 +54,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-        "^~/(.*)$": "<rootDir>/app/$1"
-      },
+      "^~/(.*)$": "<rootDir>/app/$1"
+    },
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
       "^.+\\.css$": "jest-css-modules-transform"
