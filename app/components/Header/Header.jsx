@@ -1,11 +1,10 @@
 import {Await, NavLink} from '@remix-run/react';
 import {Suspense} from 'react';
-import logo from './Pictures/kikiHomeBoxLogo.avif';
+import logo from '../../../public/kikiHomeBoxLogo.avif';
 import './header.css';
 import {BsSearch, BsPerson, BsCart3} from 'react-icons/bs';
 import HeaderTop from './HeaderTop';
 import {HeaderMenu} from './HeaderMenu';
-import HeaderBottom from './HeaderBottom';
 
 export function Header({header, isLoggedIn, cart}) {
   const {menu} = header;
@@ -19,7 +18,6 @@ export function Header({header, isLoggedIn, cart}) {
         <HeaderMenu menu={menu} viewport="desktop" />
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
       </header>
-      <HeaderBottom />
     </div>
   );
 }
