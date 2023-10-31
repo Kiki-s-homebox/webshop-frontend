@@ -4,6 +4,7 @@ export function HeaderMenu({menu, viewport}) {
   const [root] = useMatches();
   const publicStoreDomain = root?.data?.publicStoreDomain;
   const className = `header-menu-${viewport}`;
+  const shopifyDomain = 'myshopify.com';
 
   function closeAside(event) {
     if (viewport === 'mobile') {
@@ -30,7 +31,7 @@ export function HeaderMenu({menu, viewport}) {
 
         // if the url is internal, we strip the domain
         const url =
-          item.url.includes('myshopify.com') ||
+          item.url.includes(shopifyDomain) ||
           item.url.includes(publicStoreDomain)
             ? new URL(item.url).pathname
             : item.url;
