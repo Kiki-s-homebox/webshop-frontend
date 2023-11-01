@@ -31,6 +31,13 @@ export function HeaderMenu({menu, viewport}) {
         const hostName = new URL(item.url).hostname;
 
         // if the url is internal, we strip the domain
+        if (
+          !hostName.includes(shopifyDomain) ||
+          !hostName.includes(publicStoreDomain)
+        ) {
+          return null;
+        }
+
         const url =
           hostName.includes(shopifyDomain) ||
           hostName.includes(publicStoreDomain)
