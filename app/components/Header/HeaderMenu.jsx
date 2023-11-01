@@ -28,11 +28,12 @@ export function HeaderMenu({menu, viewport}) {
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
+        const hostName = new URL(item.url).hostname;
 
         // if the url is internal, we strip the domain
         const url =
-          item.url.includes(shopifyDomain) ||
-          item.url.includes(publicStoreDomain)
+          hostName.includes(shopifyDomain) ||
+          hostName.includes(publicStoreDomain)
             ? new URL(item.url).pathname
             : item.url;
         return (
