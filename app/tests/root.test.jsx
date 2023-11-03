@@ -1,11 +1,15 @@
 import '@testing-library/jest-dom';
-//import {render, screen, waitFor} from '@testing-library/react';
-import {links, loader, shouldRevalidate, forTestingOnly} from '../root'; // Update the path accordingly
-//import App from '../root';
+import {render, screen} from '@testing-library/react';
+import App, {links, loader, shouldRevalidate, forTestingOnly} from '../root';
 
 // as a note: Jest cannot handle SVGs properly. You need to mock the SVGs to non-existent
 jest.mock('../../public/favicon.svg', () => jest.fn());
-jest.mock('../components/Layout/Layout', () => jest.fn());
+jest.mock('../components/Layout/Layout', () => {
+  return {
+    __esModule: true,
+    Layout: jest.fn(() => <p>Mocked Layout</p>), // Replace this with the appropriate structure of your Layout component
+  };
+});
 
 jest.mock('@shopify/hydrogen', () => {
   const useNonce = jest.fn(() => 'mockNonce');
@@ -20,6 +24,25 @@ jest.mock('@shopify/remix-oxygen', () => {
 
   return {
     defer,
+  };
+});
+
+jest.mock('@remix-run/react', () => {
+  const useLoaderData = jest.fn();
+  const Meta = jest.fn();
+  const Links = jest.fn();
+  const Outlet = jest.fn();
+  const ScrollRestoration = jest.fn();
+  const Scripts = jest.fn();
+  const LiveReload = jest.fn();
+  return {
+    useLoaderData,
+    Meta,
+    Links,
+    Outlet,
+    ScrollRestoration,
+    Scripts,
+    LiveReload,
   };
 });
 
@@ -93,20 +116,17 @@ describe('App Functions', () => {
     });
   });
 });
-/*
-describe('App Component itself', () => {
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('renders without crashing', async () => {
+describe('App Component', () => {
+  it('renders without crashing', () => {
     render(<App />);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('app')).toBeInTheDocument();
-    })
-  
+    expect(require('@shopify/hydrogen').useNonce).toHaveBeenCalledTimes(2);
+    expect(require('@remix-run/react').useLoaderData).toHaveBeenCalledTimes(2);
+    expect(require('@remix-run/react').Meta).toHaveBeenCalledTimes(1);
+    expect(require('@remix-run/react').Links).toHaveBeenCalledTimes(1);
+    expect(require('@remix-run/react').Outlet).toHaveBeenCalledTimes(0);
+    expect(require('@remix-run/react').Scripts).toHaveBeenCalledTimes(1);
+    expect(require('@remix-run/react').LiveReload).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('Mocked Layout')).toBeInTheDocument();
   });
-  
-});*/
+});
