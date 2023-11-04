@@ -8,7 +8,7 @@ export const meta = ({data}) => {
 
 export const loader = async ({request, params, context: {storefront}}) => {
   const paginationVariables = getPaginationVariables(request, {
-    pageBy: 4,
+    pageBy: 12,
   });
 
   if (!params.blogHandle) {
@@ -118,6 +118,7 @@ const BLOGS_QUERY = `#graphql
           ...ArticleItem
         }
         pageInfo {
+          startCursor,
           hasPreviousPage
           hasNextPage
           hasNextPage

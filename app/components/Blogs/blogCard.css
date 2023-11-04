@@ -1,0 +1,28 @@
+.cardWrapper {
+  background-color: black;
+  height: 50vw;
+  width: 90vw;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 5px 5px 15px #888888;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 747px) {
+    height: 40vw;
+    width: 35vw;
+  }
+}
+
+.blog-card-image {
+  height: 80%;
+  min-height: 80%;
+  min-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.blog-title {
+  color: white;
+  text-align: center;
+}
