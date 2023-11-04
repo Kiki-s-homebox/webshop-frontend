@@ -4,6 +4,13 @@ import FooterPaymentOptions from './FooterPaymentOptions';
 
 const FooterBottom = ({shop}) => {
   const {name, paymentSettings} = shop;
+  const {privacyPolicy, shippingPolicy, termsOfService, refundPolicy} = shop;
+  const policies = [
+    privacyPolicy,
+    shippingPolicy,
+    termsOfService,
+    refundPolicy,
+  ];
   return (
     <div className="footer-bottom">
       <FooterPaymentOptions paymentOptions={paymentSettings} />
@@ -17,6 +24,14 @@ const FooterBottom = ({shop}) => {
         >
           Power By shopify
         </a>
+        {policies.map((policy) => (
+          <Link
+            className="footer-bottom-content-policy"
+            to={`/policies/${policy.handle}`}
+          >
+            {policy.title}
+          </Link>
+        ))}
       </div>
     </div>
   );

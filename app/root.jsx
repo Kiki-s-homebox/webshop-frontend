@@ -257,8 +257,25 @@ const HEADER_QUERY = `#graphql
 `;
 
 const FOOTER_QUERY = `#graphql
+  fragment PolicyItem on ShopPolicy {
+    id
+    title
+    handle
+  }
   fragment Shop on Shop {
     name
+    privacyPolicy {
+      ...PolicyItem
+    }
+    shippingPolicy {
+      ...PolicyItem
+    }
+    termsOfService {
+      ...PolicyItem
+    }
+    refundPolicy {
+      ...PolicyItem
+    }
     paymentSettings {
       acceptedCardBrands
       supportedDigitalWallets

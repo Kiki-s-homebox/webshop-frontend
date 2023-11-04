@@ -62,12 +62,28 @@
 
 .footer-bottom-content {
   display: flex;
-  gap: 0.5rem;
+}
+
+.footer-bottom-content a:first-child {
+  padding: 0 0.5rem 0 0;
 }
 
 .footer-bottom-content a {
   color: var(--light-text-foreground);
   font-size: var(--font-scale-12);
+}
+
+.footer-bottom-content-policy::before {
+  content: '\b7';
+  padding: 0 0.5rem;
+}
+
+a:hover {
+  color: var(--white);
+}
+
+.footer-bottom-content-policy:hover {
+  text-decoration: none;
 }
 
 .footer-payment-options {
