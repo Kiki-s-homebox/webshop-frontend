@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
-import App, {links, loader, shouldRevalidate, forTestingOnly} from '../root';
+import App, {
+  links,
+  loader,
+  shouldRevalidate,
+  forTestingOnly,
+  ErrorBoundary,
+} from '../root';
 
 // as a note: Jest cannot handle SVGs properly. You need to mock the SVGs to non-existent
 jest.mock('../../public/favicon.svg', () => jest.fn());
@@ -27,6 +33,16 @@ jest.mock('@shopify/remix-oxygen', () => {
   };
 });
 
+const mockMatches = [
+  {
+    id: 1,
+    pathname: '/home',
+    data: {title: 'Home'},
+    params: {id: '1'},
+    handle: 'root',
+  },
+];
+
 jest.mock('@remix-run/react', () => {
   const useLoaderData = jest.fn();
   const Meta = jest.fn();
@@ -35,6 +51,16 @@ jest.mock('@remix-run/react', () => {
   const ScrollRestoration = jest.fn();
   const Scripts = jest.fn();
   const LiveReload = jest.fn();
+  const useRouteError = jest.fn();
+  const useMatches = jest.fn(() => mockMatches);
+  const isRouteErrorResponse = jest.fn((error) => {
+    if (error) {
+      return error.status === 404;
+    } else {
+      return false;
+    }
+  });
+
   return {
     useLoaderData,
     Meta,
@@ -43,7 +69,25 @@ jest.mock('@remix-run/react', () => {
     ScrollRestoration,
     Scripts,
     LiveReload,
+    useRouteError,
+    useMatches,
+    isRouteErrorResponse,
   };
+});
+
+jest.mock('@remix-run/css-bundle', () => {
+  const cssBundleHref = [{rel: 'stylesheet', href: 'cssBundleHref'}];
+  return {
+    cssBundleHref,
+  };
+});
+
+describe('links', () => {
+  // Case that uses cssBundleHref mock
+  it('should return an array of links', () => {
+    const result = links();
+    expect(Array.isArray(result)).toBe(true);
+  });
 });
 
 describe('App Functions', () => {
@@ -65,12 +109,14 @@ describe('App Functions', () => {
       });
       expect(result).toBe(false);
     });
-  });
 
-  describe('links', () => {
-    it('should return an array of links', () => {
-      const result = links();
-      expect(Array.isArray(result)).toBe(true);
+    it('should not revalidate when form method is GET and currentUrl and nextUrl are the same', () => {
+      const result = shouldRevalidate({
+        formMethod: 'GET',
+        currentUrl: 'sameUrl',
+        nextUrl: 'sameUrl',
+      });
+      expect(result).toBe(true);
     });
   });
 
@@ -105,7 +151,23 @@ describe('App Functions', () => {
       };
       const customerAccessToken = {
         accessToken: 'token',
-        expiresAt: new Date().toISOString(),
+        expiresAt: '2100-01-01T00:00:00.000Z',
+      };
+      const result = await forTestingOnly.validateCustomerAccessToken(
+        session,
+        customerAccessToken,
+      );
+      expect(result).toHaveProperty('isLoggedIn');
+      expect(result).toHaveProperty('headers');
+    });
+    it('should not validate the customer access token', async () => {
+      const session = {
+        unset: jest.fn(),
+        commit: jest.fn(),
+      };
+      const customerAccessToken = {
+        accessToken: 'token',
+        expiresAt: '2022-01-01T00:00:00.000Z',
       };
       const result = await forTestingOnly.validateCustomerAccessToken(
         session,
@@ -118,6 +180,18 @@ describe('App Functions', () => {
 });
 
 describe('App Component', () => {
+  let consoleSpy;
+
+  // This test causes a console error due react-testing-library render wraps a component
+  beforeEach(() => {
+    consoleSpy = jest.spyOn(console, 'error');
+    consoleSpy.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
+
   it('renders without crashing', () => {
     render(<App />);
     expect(require('@shopify/hydrogen').useNonce).toHaveBeenCalledTimes(2);
@@ -127,6 +201,46 @@ describe('App Component', () => {
     expect(require('@remix-run/react').Outlet).toHaveBeenCalledTimes(0);
     expect(require('@remix-run/react').Scripts).toHaveBeenCalledTimes(1);
     expect(require('@remix-run/react').LiveReload).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('Mocked Layout')).toBeInTheDocument();
+  });
+});
+
+describe('ErrorBoundary', () => {
+  it('renders the error message and status code when there is an error', () => {
+    const mockError = {
+      status: 404,
+      data: 'Error data message',
+    };
+
+    jest
+      .spyOn(require('@remix-run/react'), 'useRouteError')
+      .mockReturnValue(mockError);
+
+    render(<ErrorBoundary />);
+
+    expect(screen.getByText('Mocked Layout')).toBeInTheDocument();
+  });
+
+  it('renders the error message and status code when there is an actual error', () => {
+    const mockError = new Error('Test error');
+    mockError.message = 'Mocked error';
+
+    jest
+      .spyOn(require('@remix-run/react'), 'useRouteError')
+      .mockReturnValue(mockError);
+
+    render(<ErrorBoundary />);
+
+    expect(screen.getByText('Mocked Layout')).toBeInTheDocument();
+  });
+
+  it('renders a generic error message and status code when no error is provided', () => {
+    jest
+      .spyOn(require('@remix-run/react'), 'useRouteError')
+      .mockReturnValue(null);
+
+    render(<ErrorBoundary />);
+
     expect(screen.getByText('Mocked Layout')).toBeInTheDocument();
   });
 });

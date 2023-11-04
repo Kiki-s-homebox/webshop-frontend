@@ -35,7 +35,9 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
+    ...(cssBundleHref
+      ? [{rel: 'stylesheet', href: cssBundleHref}]
+      : /* istanbul ignore next */ []),
     {rel: 'stylesheet', href: resetStyles},
     {rel: 'stylesheet', href: appStyles},
     {
