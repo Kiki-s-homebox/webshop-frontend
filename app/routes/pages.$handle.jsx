@@ -1,8 +1,13 @@
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 
-export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data.page.title}`}];
+const seo = ({data}) => ({
+  title: `${data?.page?.title} | Kiki's home box`,
+  description: data?.page?.description,
+});
+
+export const handle = {
+  seo,
 };
 
 export async function loader({params, context}) {
