@@ -1,27 +1,45 @@
 .cardWrapper {
-  background-color: black;
+  background-color: #11151c;
   min-height: 50vw;
   width: 100%;
   overflow: hidden;
   position: relative;
-  box-shadow: 5px 5px 15px #888888;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   @media (min-width: 747px) {
-    height: 40vw;
-    width: 35vw;
+    min-height: 40vw;
+    width: 100%;
   }
 }
 
 .blog-card-image {
-  height: 40vw;
   width: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+  border-radius: 10px 10px 0px 0px;
+  @media (min-width: 747px) {
+    height: 30vw;
+  }
 }
 
-.blog-title {
+.blog-card-title {
   color: white;
   text-align: center;
+  padding: 20px 20px 10px 20px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+  white-space: nowrap;
+}
+
+.blog-card-text {
+  padding: 10px 10px 50px 20px;
+  color: white;
+  text-align: left;
 }
