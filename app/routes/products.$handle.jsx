@@ -6,8 +6,17 @@ import {getVariantUrl} from '~/utils';
 
 import ProductPage from '../components/Product/ProductPage';
 
-export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data.product.title}`}];
+const seo = ({data}) => ({
+  title: data?.product?.title,
+  description: window.location.href.includes('/fi')
+    ? `${data?.product?.description.split('.')[0]}
+    . Osta ${data?.product?.title.toLowerCase()} Kiki's Home Boxista!`
+    : `${data?.product?.description.split('.')[0]}
+    . Buy ${data?.product?.title.toLowerCase()} from Kiki's Home Box!`,
+});
+
+export const handle = {
+  seo,
 };
 
 export async function loader({params, request, context}) {
