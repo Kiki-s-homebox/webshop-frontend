@@ -1,6 +1,7 @@
 import {json} from '@shopify/remix-oxygen';
-import {Link, useLoaderData} from '@remix-run/react';
-import {Image, Pagination, getPaginationVariables} from '@shopify/hydrogen';
+import {useLoaderData} from '@remix-run/react';
+import {Pagination, getPaginationVariables} from '@shopify/hydrogen';
+import BlogsPage from '~/components/Blogs/BlogsPage';
 
 export const meta = ({data}) => {
   return [{title: `Hydrogen | ${data.blog.title} blog`}];
@@ -34,63 +35,42 @@ export default function Blog() {
   const {articles} = blog;
 
   return (
-    <div className="blog">
-      <h1>{blog.title}</h1>
-      <div className="blog-grid">
-        <Pagination connection={articles}>
-          {({nodes, isLoading, PreviousLink, NextLink}) => {
-            return (
-              <>
-                <PreviousLink>
-                  {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
-                </PreviousLink>
-                {nodes.map((article, index) => {
-                  return (
-                    <ArticleItem
-                      article={article}
-                      key={article.id}
-                      loading={index < 2 ? 'eager' : 'lazy'}
-                    />
-                  );
-                })}
-                <NextLink>
-                  {isLoading ? 'Loading...' : <span>Load more ↓</span>}
-                </NextLink>
-              </>
-            );
-          }}
-        </Pagination>
-      </div>
+    <div>
+      <Pagination connection={articles}>
+        {({nodes, isLoading, PreviousLink, NextLink}) => {
+          return <BlogsPage blogs={blog} />;
+        }}
+      </Pagination>
     </div>
   );
 }
 
-function ArticleItem({article, loading}) {
-  const publishedAt = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(article.publishedAt));
-  return (
-    <div className="blog-article" key={article.id}>
-      <Link to={`/blogs/${article.blog.handle}/${article.handle}`}>
-        {article.image && (
-          <div className="blog-article-image">
-            <Image
-              alt={article.image.altText || article.title}
-              aspectRatio="3/2"
-              data={article.image}
-              loading={loading}
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-          </div>
-        )}
-        <h3>{article.title}</h3>
-        <small>{publishedAt}</small>
-      </Link>
-    </div>
-  );
-}
+// function ArticleItem({article, loading}) {
+//   const publishedAt = new Intl.DateTimeFormat('en-US', {
+//     year: 'numeric',
+//     month: 'long',
+//     day: 'numeric',
+//   }).format(new Date(article.publishedAt));
+//   return (
+//     <div className="blog-article" key={article.id}>
+//       <Link to={`/blogs/${article.blog.handle}/${article.handle}`}>
+//         {article.image && (
+//           <div className="blog-article-image">
+//             <Image
+//               alt={article.image.altText || article.title}
+//               aspectRatio="3/2"
+//               data={article.image}
+//               loading={loading}
+//               sizes="(min-width: 768px) 50vw, 100vw"
+//             />
+//           </div>
+//         )}
+//         <h3>{article.title}</h3>
+//         <small>{publishedAt}</small>
+//       </Link>
+//     </div>
+//   );
+// }
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog
 const BLOGS_QUERY = `#graphql

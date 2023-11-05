@@ -1,12 +1,22 @@
+import React from 'react';
 import './blogCard.css';
 
 const BlogCard = ({image, title, body}) => {
   const imageUrl = image.url;
   const altText = image.altText;
-  // const contentHtmlText = body.substring(0, 200);
-  // console.log("contentHtmlText: ", contentHtmlText)
-  const contentHtmlText =
-    "If you're planning to move to Finland, one of the most important aspects to consider is finding suitable housing. While the Finnish housing market may seem complex, with the right knowledge and gui";
+  const [contentHtmlText, setContentHtmlText] = React.useState();
+
+  React.useEffect(() => {
+    const firstPText = extractFirstPText(body).substring(0, 150) + '...';
+    setContentHtmlText(firstPText);
+  }, [body]);
+
+  const extractFirstPText = (contentHTml) => {
+    const parse = new DOMParser();
+    const docString = parse.parseFromString(contentHTml, 'text/html');
+    const firstPText = docString.querySelector('p');
+    return firstPText ? firstPText.textContent : '';
+  };
 
   return (
     <div className="cardWrapper">
