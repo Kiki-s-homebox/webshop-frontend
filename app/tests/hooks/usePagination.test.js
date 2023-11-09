@@ -1,84 +1,82 @@
-import { usePagination, DOTS } from '../../hooks/usePagination';  ; // Update the import path accordingly
+import {usePagination, DOTS} from '../../hooks/usePagination'; // Update the import path accordingly
 
 jest.mock('react', () => ({
-    useMemo: jest.fn((fn) => fn()),
-  }));
-  
-  describe('usePagination', () => {
-    it('1. if sentence', () => {
-      const totalCount = 10;
-      const pageSize = 5;
-      //const siblingCount = 1; // Testing the default sibling count 1
-      const currentPage = 1;
-  
-      const paginationRange = usePagination({
-        totalCount,
-        pageSize,
-        //siblingCount,
-        currentPage,
-      });
-      expect(paginationRange).toEqual([1, 2]);
-    });
-    
+  useMemo: jest.fn((fn) => fn()),
+}));
 
-    it('2. if sentence', () => {
-      const totalCount = 20;
-      const pageSize = 2;
-      const siblingCount = 1;
-      const currentPage = 3;
-  
-      const paginationRange = usePagination({
-        totalCount,
-        pageSize,
-        siblingCount,
-        currentPage,
-      });
-      expect(paginationRange).toEqual([1,  2,  3, 4, 5, -1, 10]);
-    });
+describe('usePagination', () => {
+  it('1. if sentence', () => {
+    const totalCount = 10;
+    const pageSize = 5;
+    //const siblingCount = 1; // Testing the default sibling count 1
+    const currentPage = 1;
 
-    it('3. if sentence', () => {
-      const totalCount = 15;
-      const pageSize = 2;
-      const siblingCount = 1;
-      const currentPage = 10;
-      const paginationRange = usePagination({
-        totalCount,
-        pageSize,
-        siblingCount,
-        currentPage,
-      });
-      console.log(paginationRange)
-      expect(paginationRange).toEqual([1, -1, 4, 5, 6, 7, 8]);
-
-    })
-
-    it('4. if sentence', () => {
-      const totalCount = 20;
-      const pageSize = 2;
-      const siblingCount = 1;
-      const currentPage = 5;
-  
-      const paginationRange = usePagination({
-        totalCount,
-        pageSize,
-        siblingCount,
-        currentPage,
-      });
-      expect(paginationRange).toEqual([1, -1, 4, 5, 6, -1, 10]);
+    const paginationRange = usePagination({
+      totalCount,
+      pageSize,
+      //siblingCount,
+      currentPage,
     });
-    
-    it('Else option', () => {
-      const totalCount = 20;
-      const pageSize = 2;
-      const siblingCount = 4;
-      const currentPage = 5;
-      const paginationRange = usePagination({
-        totalCount,
-        pageSize,
-        siblingCount,
-        currentPage,
-      });
-      console.log(paginationRange)
-      expect(paginationRange).toEqual([1,  2,  3, 4, 5, -1, 10]);
-    });
+    expect(paginationRange).toEqual([1, 2]);
   });
+
+  it('2. if sentence', () => {
+    const totalCount = 20;
+    const pageSize = 2;
+    const siblingCount = 1;
+    const currentPage = 3;
+
+    const paginationRange = usePagination({
+      totalCount,
+      pageSize,
+      siblingCount,
+      currentPage,
+    });
+    expect(paginationRange).toEqual([1, 2, 3, 4, 5, -1, 10]);
+  });
+
+  it('3. if sentence', () => {
+    const totalCount = 15;
+    const pageSize = 2;
+    const siblingCount = 1;
+    const currentPage = 10;
+    const paginationRange = usePagination({
+      totalCount,
+      pageSize,
+      siblingCount,
+      currentPage,
+    });
+    console.log(paginationRange);
+    expect(paginationRange).toEqual([1, -1, 4, 5, 6, 7, 8]);
+  });
+
+  it('4. if sentence', () => {
+    const totalCount = 20;
+    const pageSize = 2;
+    const siblingCount = 1;
+    const currentPage = 5;
+
+    const paginationRange = usePagination({
+      totalCount,
+      pageSize,
+      siblingCount,
+      currentPage,
+    });
+    expect(paginationRange).toEqual([1, -1, 4, 5, 6, -1, 10]);
+  });
+
+  it('Else option', () => {
+    const totalCount = 20;
+    const pageSize = 2;
+    const siblingCount = 4;
+    const currentPage = 5;
+    const paginationRange = usePagination({
+      totalCount,
+      pageSize,
+      siblingCount,
+      currentPage,
+    });
+    console.log(paginationRange);
+    expect(paginationRange).toEqual([1, 2, 3, 4, 5, -1, 10]);
+  });
+});
