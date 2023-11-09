@@ -1,5 +1,6 @@
 import BlogCard from './BlogCard';
-import './blogs.css';
+import './blogsPage.css';
+import {Link} from '@remix-run/react';
 
 const BlogsPage = ({blogs}) => {
   return (
@@ -7,12 +8,17 @@ const BlogsPage = ({blogs}) => {
       <h1>{blogs.title}</h1>
       <div className="blogs-grid">
         {blogs.articles.nodes.map((node) => (
-          <BlogCard
-            key={node.id}
-            image={node.image}
-            title={node.title}
-            body={node.contentHtml}
-          />
+          <Link
+            to={`/blogs/${node.blog.handle}/${node.handle}`}
+            className="blogs-a"
+          >
+            <BlogCard
+              key={node.id}
+              image={node.image}
+              title={node.title}
+              body={node.contentHtml}
+            />
+          </Link>
         ))}
       </div>
     </div>

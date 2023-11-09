@@ -1,0 +1,35 @@
+.single-blog-image {
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.single-blog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  @media (min-width: 680px) {
+    flex-direction: row;
+    padding-left: 5rem;
+  }
+}
+
+.body-text {
+  flex: 3;
+}
+
+.body-article {
+  flex: 1;
+}
+
+.body-article-title {
+  text-align: center;
+  font-size: larger;
+  font-style: italic;
+  padding-bottom: 0.5rem;
+}
+.body-article-blogCard {
+  border: 1px black solid;
+}

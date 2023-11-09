@@ -1,6 +1,6 @@
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen';
+import SingleBlogPage from '~/components/Blogs/SingleBlogPage';
 
 export const meta = ({data}) => {
   return [{title: `Hydrogen | ${data.article.title} article`}];
@@ -28,28 +28,10 @@ export async function loader({params, context}) {
 
 export default function Article() {
   const {article} = useLoaderData();
-  const {title, image, contentHtml, author} = article;
-
-  const publishedDate = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(article.publishedAt));
 
   return (
-    <div className="article">
-      <h1>
-        {title}
-        <span>
-          {publishedDate} &middot; {author?.name}
-        </span>
-      </h1>
-
-      {image && <Image data={image} sizes="90vw" loading="eager" />}
-      <div
-        dangerouslySetInnerHTML={{__html: contentHtml}}
-        className="article"
-      />
+    <div>
+      <SingleBlogPage article={article} />
     </div>
   );
 }
