@@ -1,13 +1,12 @@
 import {render, fireEvent, screen} from '@testing-library/react';
 import Pagination from '../../../components/Pagination/Pagination';
-import { usePagination } from '~/hooks/usePagination';
-
+import {usePagination} from '~/hooks/usePagination';
 
 jest.mock('../../../hooks/usePagination', () => {
   const usePagination = jest.fn();
   return {
-      usePagination,
-  }
+    usePagination,
+  };
 });
 
 // Mock the global window object
@@ -32,7 +31,7 @@ describe('Pagination Component', () => {
 
   it('No Pagination should return null', () => {
     usePagination.mockReturnValue([1]);
-    const { container } = render(<Pagination {...props} />);
+    const {container} = render(<Pagination {...props} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -43,7 +42,7 @@ describe('Pagination Component', () => {
       currentPage: 1,
       pageSize: 5,
     };
-    render(<Pagination {...props}/>);
+    render(<Pagination {...props} />);
     // Expect that window.scrollTo is called
     expect(global.scrollTo).toHaveBeenCalledWith({
       top: 0,
@@ -51,7 +50,6 @@ describe('Pagination Component', () => {
       behavior: 'smooth',
     });
   });
-
 
   it('calls onPageChange with the correct page number when a page number item is clicked', () => {
     usePagination.mockReturnValue([1, 2]);
