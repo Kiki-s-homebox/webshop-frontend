@@ -19,15 +19,13 @@ const BlogCard = ({image, title, body}) => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: '#855832'}}>
       <img src={imageUrl} className="blog-card-image" alt={altText} />
-      <div style={{backgroundColor: '#855832'}}>
-        <div className="blog-card-title">{title}</div>
-        <div
-          dangerouslySetInnerHTML={{__html: contentHtmlText}}
-          className="blog-card-text"
-        />
-      </div>
+      <div className="blog-card-title">{title}</div>
+      <div
+        dangerouslySetInnerHTML={{__html: contentHtmlText}}
+        className="blog-card-text"
+      />
     </div>
   );
 };

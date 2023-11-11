@@ -1,13 +1,25 @@
+import Pagination from '../Pagination/Pagination';
 import BlogCard from './BlogCard';
 import './blogsPage.css';
 import {Link} from '@remix-run/react';
+import {useState, useMemo} from 'react';
+
+const BLOGS_PER_PAGE = 4;
 
 const BlogsPage = ({blogs}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * BLOGS_PER_PAGE;
+    const lastPageIndex = firstPageIndex + BLOGS_PER_PAGE;
+    return blogs.articles.nodes.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
+
   return (
     <div className="blogs-flex">
       <h1>{blogs.title}</h1>
       <div className="blogs-grid">
-        {blogs.articles.nodes.map((node) => (
+        {currentData.map((node) => (
           <Link
             to={`/blogs/${node.blog.handle}/${node.handle}`}
             className="blogs-a"
@@ -21,6 +33,12 @@ const BlogsPage = ({blogs}) => {
           </Link>
         ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalCount={blogs.articles.nodes.length}
+        pageSize={BLOGS_PER_PAGE}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </div>
   );
 };

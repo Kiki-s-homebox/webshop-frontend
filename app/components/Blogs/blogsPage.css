@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  padding-bottom: 3rem;
   @media (min-width: 747px) {
     grid-template-columns: 1fr 1fr;
     width: 70%;
@@ -20,6 +21,7 @@
 }
 
 .blogs-a {
+  background-color: #855832;
   width: 100%;
   overflow: hidden;
   position: relative;
