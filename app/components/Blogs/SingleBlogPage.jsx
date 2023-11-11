@@ -1,7 +1,9 @@
 import BlogCard from './BlogCard';
 import './singleBlogPage.css';
+import {FiUser} from 'react-icons/fi';
 
 const SingleBlogPage = ({article}) => {
+  console.log('article: ', article);
   return (
     <div>
       <div>
@@ -12,10 +14,23 @@ const SingleBlogPage = ({article}) => {
         />
       </div>
       <div className="single-blog-body">
-        <div
-          dangerouslySetInnerHTML={{__html: article.contentHtml}}
-          className="body-text"
-        />
+        <div className="body-text">
+          <h1 className="blog-article-h1">{article.title}</h1>
+          <div dangerouslySetInnerHTML={{__html: article.contentHtml}} />
+          <div className="blog-article-author">
+            <FiUser
+              style={{
+                fontSize: '40px',
+                backgroundColor: '#d9d9d9',
+                padding: '0.5rem',
+              }}
+            />
+            <div className="blog-article-author-name">
+              <p>Written by</p>
+              <p>{article.author.name}</p>
+            </div>
+          </div>
+        </div>
         <div className="body-article">
           <p className="body-article-title">
             You might also be interested to read

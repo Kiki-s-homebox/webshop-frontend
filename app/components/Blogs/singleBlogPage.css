@@ -22,6 +22,10 @@
 
 .body-article {
   flex: 1;
+  max-width: 20rem;
+  @media (min-width: 680px) {
+    max-width: 12rem;
+  }
 }
 
 .body-article-title {
@@ -32,4 +36,18 @@
 }
 .body-article-blogCard {
   border: 1px black solid;
+}
+
+.blog-article-author {
+  display: flex;
+  padding-top: 2rem;
+  gap: 15px;
+}
+
+.blog-article-author-name {
+  font-weight: bold;
+}
+
+.blog-article-h1 {
+  margin-bottom: 1rem;
 }
