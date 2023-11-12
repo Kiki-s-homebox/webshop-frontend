@@ -10,7 +10,7 @@ const SingleBlogPage = ({article, blogs}) => {
 
   const wrapWithPreTag = (content) => {
     return `<pre>${content}</pre>`;
-  }
+  };
 
   useEffect(() => {
     if (blogs) {
@@ -27,7 +27,7 @@ const SingleBlogPage = ({article, blogs}) => {
       }
     }
 
-    setArticleText(wrapWithPreTag(article.contentHtml))
+    setArticleText(wrapWithPreTag(article.contentHtml));
 
     return () => {
       setSuggestedArticle();
@@ -47,7 +47,10 @@ const SingleBlogPage = ({article, blogs}) => {
       <div className="single-blog-body">
         <div className="body-text">
           <h1 className="blog-article-h1">{article.title}</h1>
-          <div dangerouslySetInnerHTML={{__html: articleText}} className="blog-article-body" />
+          <div
+            dangerouslySetInnerHTML={{__html: articleText}}
+            className="blog-article-body"
+          />
           <div className="blog-article-author">
             <FiUser
               style={{
