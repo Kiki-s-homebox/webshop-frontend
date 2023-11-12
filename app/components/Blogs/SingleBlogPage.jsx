@@ -6,6 +6,11 @@ import {Link} from '@remix-run/react';
 
 const SingleBlogPage = ({article, blogs}) => {
   const [suggestedArticle, setSuggestedArticle] = useState();
+  const [articleText, setArticleText] = useState();
+
+  const wrapWithPreTag = (content) => {
+    return `<pre>${content}</pre>`;
+  }
 
   useEffect(() => {
     if (blogs) {
@@ -22,8 +27,11 @@ const SingleBlogPage = ({article, blogs}) => {
       }
     }
 
+    setArticleText(wrapWithPreTag(article.contentHtml))
+
     return () => {
       setSuggestedArticle();
+      setArticleText();
     };
   }, [article]);
 
@@ -39,7 +47,7 @@ const SingleBlogPage = ({article, blogs}) => {
       <div className="single-blog-body">
         <div className="body-text">
           <h1 className="blog-article-h1">{article.title}</h1>
-          <div dangerouslySetInnerHTML={{__html: article.contentHtml}} />
+          <div dangerouslySetInnerHTML={{__html: articleText}} className="blog-article-body" />
           <div className="blog-article-author">
             <FiUser
               style={{
@@ -55,11 +63,11 @@ const SingleBlogPage = ({article, blogs}) => {
           </div>
         </div>
         {suggestedArticle && (
-          <div className="body-article">
-            <p className="body-article-title">
+          <div className="body-suggested-article">
+            <p className="body-suggested-article-title">
               You might also be interested to read
             </p>
-            <div className="body-article-blogCard">
+            <div className="body-suggested-article-blogCard">
               <Link
                 to={`/blogs/${suggestedArticle.blog.handle}/${suggestedArticle.handle}`}
               >

@@ -18,9 +18,14 @@
 
 .body-text {
   flex: 3;
+
+  @media (min-width: 1260px) {
+    padding-left: 9vw;
+    padding-right: 13vw;
+  }
 }
 
-.body-article {
+.body-suggested-article {
   flex: 1;
   max-width: 20rem;
   @media (min-width: 680px) {
@@ -28,18 +33,19 @@
   }
 }
 
-.body-article-title {
+.body-suggested-article-title {
   text-align: center;
   font-size: larger;
   font-style: italic;
   padding-bottom: 0.5rem;
 }
-.body-article-blogCard {
+
+.body-suggested-article-blogCard {
   border: 1px black solid;
   transition: opacity 0.3s ease;
 }
 
-.body-article-blogCard :hover {
+.body-suggested-article-blogCard :hover {
   opacity: 0.9;
 }
 
@@ -56,4 +62,18 @@
 .blog-article-h1 {
   margin-top: 0rem;
   margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.blog-article-body h2 {
+  font-family: serif;
+  font-size: x-large;
+  letter-spacing: 0.8px;
+}
+
+.blog-article-body p {
+  letter-spacing: 0.06rem;
+  font-family: serif;
+  line-height: 1.8;
 }
