@@ -14,10 +14,15 @@
   justify-content: center;
   gap: 3rem;
   padding-bottom: 3rem;
+  transition: opacity 0.3s ease;
   @media (min-width: 747px) {
     grid-template-columns: 1fr 1fr;
     width: 70%;
   }
+}
+
+.blogs-grid :hover {
+  opacity: 0.9;
 }
 
 .blogs-a {

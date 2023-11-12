@@ -3,7 +3,7 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 0px;
   @media (min-width: 747px) {
     height: 30vw;
   }

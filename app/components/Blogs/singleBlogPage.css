@@ -36,6 +36,11 @@
 }
 .body-article-blogCard {
   border: 1px black solid;
+  transition: opacity 0.3s ease;
+}
+
+.body-article-blogCard :hover {
+  opacity: 0.9;
 }
 
 .blog-article-author {
