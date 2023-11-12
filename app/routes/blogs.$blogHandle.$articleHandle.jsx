@@ -3,10 +3,12 @@ import {useLoaderData} from '@remix-run/react';
 import SingleBlogPage from '~/components/Blogs/SingleBlogPage';
 
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data.article.title} article`}];
+  return [
+    {title: `Kiki's Home Box | ${data.article.articleByHandle.title} article`},
+  ];
 };
 
-export async function loader({params, context}) {
+export async function loader({params, context, request}) {
   const {blogHandle, articleHandle} = params;
 
   if (!articleHandle || !blogHandle) {
@@ -21,7 +23,7 @@ export async function loader({params, context}) {
     throw new Response(null, {status: 404});
   }
 
-  const article = blog.articleByHandle;
+  const article = blog;
 
   return json({article});
 }
@@ -31,7 +33,10 @@ export default function Article() {
 
   return (
     <div>
-      <SingleBlogPage article={article} />
+      <SingleBlogPage
+        article={article.articleByHandle}
+        blogs={article.articles}
+      />
     </div>
   );
 }
@@ -64,6 +69,31 @@ const ARTICLE_QUERY = `#graphql
           title
         }
       }
+      articles(first: 10, reverse: true) {
+        nodes {
+          ...ArticleItem
+        }
+      }
+    }
+  }
+  fragment ArticleItem on Article {
+    author: authorV2 {
+      name
+    }
+    contentHtml
+    handle
+    id
+    image {
+      id
+      altText
+      url
+      width
+      height
+    }
+    publishedAt
+    title
+    blog {
+      handle
     }
   }
 `;

@@ -1,9 +1,32 @@
+import {useState, useEffect} from 'react';
 import BlogCard from './BlogCard';
 import './singleBlogPage.css';
 import {FiUser} from 'react-icons/fi';
+import {Link} from '@remix-run/react';
 
-const SingleBlogPage = ({article}) => {
-  console.log('article: ', article);
+const SingleBlogPage = ({article, blogs}) => {
+  const [suggestedArticle, setSuggestedArticle] = useState();
+
+  useEffect(() => {
+    if (blogs) {
+      const randomNumber = Math.floor(Math.random() * 10);
+
+      if (blogs.nodes[randomNumber].title === article.title) {
+        if (randomNumber === 0) {
+          setSuggestedArticle(blogs.nodes[randomNumber + 1]);
+        } else {
+          setSuggestedArticle(blogs.nodes[randomNumber - 1]);
+        }
+      } else {
+        setSuggestedArticle(blogs.nodes[randomNumber]);
+      }
+    }
+
+    return () => {
+      setSuggestedArticle();
+    };
+  }, [article]);
+
   return (
     <div>
       <div>
@@ -31,18 +54,24 @@ const SingleBlogPage = ({article}) => {
             </div>
           </div>
         </div>
-        <div className="body-article">
-          <p className="body-article-title">
-            You might also be interested to read
-          </p>
-          <div className="body-article-blogCard">
-            <BlogCard
-              image={article.image}
-              title={article.title}
-              body={article.contentHtml}
-            />
+        {suggestedArticle && (
+          <div className="body-article">
+            <p className="body-article-title">
+              You might also be interested to read
+            </p>
+            <div className="body-article-blogCard">
+              <Link
+                to={`/blogs/${suggestedArticle.blog.handle}/${suggestedArticle.handle}`}
+              >
+                <BlogCard
+                  image={suggestedArticle.image}
+                  title={suggestedArticle.title}
+                  body={suggestedArticle.contentHtml}
+                />
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

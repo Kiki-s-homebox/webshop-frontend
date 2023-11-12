@@ -24,7 +24,7 @@
   flex: 1;
   max-width: 20rem;
   @media (min-width: 680px) {
-    max-width: 12rem;
+    max-width: 15rem;
   }
 }
 
@@ -49,5 +49,6 @@
 }
 
 .blog-article-h1 {
+  margin-top: 0rem;
   margin-bottom: 1rem;
 }

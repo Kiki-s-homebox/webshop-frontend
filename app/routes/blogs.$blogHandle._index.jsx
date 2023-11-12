@@ -4,7 +4,7 @@ import {getPaginationVariables} from '@shopify/hydrogen';
 import BlogsPage from '~/components/Blogs/BlogsPage';
 
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data.blog.title} blog`}];
+  return [{title: `Kiki's Home Box | ${data.blog.title} blog`}];
 };
 
 export const loader = async ({request, params, context: {storefront}}) => {
