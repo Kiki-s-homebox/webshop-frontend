@@ -3,8 +3,9 @@ import BlogCard from './BlogCard';
 import './singleBlogPage.css';
 import {FiUser} from 'react-icons/fi';
 import {Link} from '@remix-run/react';
+import RecommendedProducts from '../RecommendedProducts/RecommendedProducts';
 
-const SingleBlogPage = ({article, blogs}) => {
+const SingleBlogPage = ({article, blogs, recommendedProducts}) => {
   const [suggestedArticle, setSuggestedArticle] = useState();
   const [articleText, setArticleText] = useState();
 
@@ -14,7 +15,7 @@ const SingleBlogPage = ({article, blogs}) => {
 
   useEffect(() => {
     if (blogs) {
-      const randomNumber = Math.floor(Math.random() * 10);
+      const randomNumber = Math.floor(Math.random() * blogs.nodes.length);
 
       if (blogs.nodes[randomNumber].title === article.title) {
         if (randomNumber === 0) {
@@ -84,6 +85,9 @@ const SingleBlogPage = ({article, blogs}) => {
           </div>
         )}
       </div>
+      {recommendedProducts.products && (
+        <RecommendedProducts products={recommendedProducts.products} />
+      )}
     </div>
   );
 };

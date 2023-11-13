@@ -8,7 +8,7 @@ export const meta = ({data}) => {
   ];
 };
 
-export async function loader({params, context, request}) {
+export async function loader({params, context}) {
   const {blogHandle, articleHandle} = params;
 
   if (!articleHandle || !blogHandle) {
@@ -19,23 +19,28 @@ export async function loader({params, context, request}) {
     variables: {blogHandle, articleHandle},
   });
 
+  const recommendedProducts = await context.storefront.query(
+    RECOMMENDED_PRODUCTS_QUERY,
+  );
+
   if (!blog?.articleByHandle) {
     throw new Response(null, {status: 404});
   }
 
   const article = blog;
 
-  return json({article});
+  return json({article, recommendedProducts});
 }
 
 export default function Article() {
-  const {article} = useLoaderData();
+  const data = useLoaderData();
 
   return (
     <div>
       <SingleBlogPage
-        article={article.articleByHandle}
-        blogs={article.articles}
+        article={data.article.articleByHandle}
+        blogs={data.article.articles}
+        recommendedProducts={data.recommendedProducts}
       />
     </div>
   );
@@ -69,7 +74,7 @@ const ARTICLE_QUERY = `#graphql
           title
         }
       }
-      articles(first: 10, reverse: true) {
+      articles(first: 15, reverse: true) {
         nodes {
           ...ArticleItem
         }
@@ -94,6 +99,37 @@ const ARTICLE_QUERY = `#graphql
     title
     blog {
       handle
+    }
+  }
+`;
+
+const RECOMMENDED_PRODUCTS_QUERY = `#graphql
+  fragment RecommendedProduct on Product {
+    id
+    title
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    images(first: 1) {
+      nodes {
+        id
+        url
+        altText
+        width
+        height
+      }
+    }
+  }
+  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 3, sortKey: PRICE, reverse: true) {
+      nodes {
+        ...RecommendedProduct
+      }
     }
   }
 `;

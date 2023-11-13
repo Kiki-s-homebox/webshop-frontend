@@ -49,16 +49,6 @@
   opacity: 0.9;
 }
 
-.blog-article-author {
-  display: flex;
-  padding-top: 2rem;
-  gap: 15px;
-}
-
-.blog-article-author-name {
-  font-weight: bold;
-}
-
 .blog-article-h1 {
   margin-top: 0rem;
   margin-bottom: 1rem;
@@ -76,4 +66,14 @@
   letter-spacing: 0.06rem;
   font-family: serif;
   line-height: 1.8;
+}
+
+.blog-article-author {
+  display: flex;
+  padding-top: 1rem;
+  gap: 15px;
+}
+
+.blog-article-author-name {
+  font-weight: bold;
 }
