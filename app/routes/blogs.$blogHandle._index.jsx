@@ -23,19 +23,26 @@ export const loader = async ({request, params, context: {storefront}}) => {
     },
   });
 
+  const recommendedProducts = await storefront.query(
+    RECOMMENDED_PRODUCTS_QUERY,
+  );
+
   if (!blog?.articles) {
     throw new Response('Not found', {status: 404});
   }
 
-  return json({blog});
+  return json({blog, recommendedProducts});
 };
 
 export default function Blog() {
-  const {blog} = useLoaderData();
+  const data = useLoaderData();
 
   return (
     <div>
-      <BlogsPage blogs={blog} />;
+      <BlogsPage
+        blogs={data.blog}
+        recommendedProducts={data.recommendedProducts}
+      />
     </div>
   );
 }
@@ -95,6 +102,37 @@ const BLOGS_QUERY = `#graphql
     title
     blog {
       handle
+    }
+  }
+`;
+
+const RECOMMENDED_PRODUCTS_QUERY = `#graphql
+  fragment RecommendedProduct on Product {
+    id
+    title
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    images(first: 1) {
+      nodes {
+        id
+        url
+        altText
+        width
+        height
+      }
+    }
+  }
+  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 3, sortKey: PRICE, reverse: true) {
+      nodes {
+        ...RecommendedProduct
+      }
     }
   }
 `;
