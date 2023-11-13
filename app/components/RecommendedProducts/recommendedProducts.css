@@ -11,10 +11,16 @@
   display: grid;
   grid-gap: 2.5rem;
   padding-top: 1rem;
+  transition: opacity 0.3s ease;
   grid-template-columns: repeat(1, 1fr);
   @media (min-width: 45em) {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.recommendedProducts-body :hover {
+  text-decoration: underline;
+  opacity: 0.9;
 }
 
 .recommendedProduct img {
