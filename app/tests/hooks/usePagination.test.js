@@ -1,4 +1,4 @@
-import {usePagination, DOTS} from '../../hooks/usePagination'; // Update the import path accordingly
+import {usePagination} from '../../hooks/usePagination'; // Update the import path accordingly
 
 jest.mock('react', () => ({
   useMemo: jest.fn((fn) => fn()),
@@ -8,13 +8,11 @@ describe('usePagination', () => {
   it('1. if sentence', () => {
     const totalCount = 10;
     const pageSize = 5;
-    //const siblingCount = 1; // Testing the default sibling count 1
     const currentPage = 1;
 
     const paginationRange = usePagination({
       totalCount,
       pageSize,
-      //siblingCount,
       currentPage,
     });
     expect(paginationRange).toEqual([1, 2]);
