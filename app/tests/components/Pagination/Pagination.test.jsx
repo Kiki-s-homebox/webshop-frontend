@@ -7,7 +7,7 @@ jest.mock('../../../hooks/usePagination', () => {
   const DOTS = -1;
   return {
     usePagination,
-    DOTS: DOTS,
+    DOTS,
   };
 });
 
