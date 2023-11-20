@@ -3,8 +3,8 @@ import {render, screen} from '@testing-library/react';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 
 jest.mock('@shopify/hydrogen', () => {
-  const Money = jest.fn(() => <p>Mocked Money</p>);
-  const Image = jest.fn(() => <p>Mocked Image</p>);
+  const Money = jest.fn(() => 'Mocked Money');
+  const Image = jest.fn(() => 'Mocked Image');
   return {
     Money,
     Image,
@@ -13,8 +13,10 @@ jest.mock('@shopify/hydrogen', () => {
 
 jest.mock('@remix-run/react', () => {
   const useNavigate = jest.fn(() => jest.fn());
+  const Link = jest.fn(() => 'Mocked Link');
   return {
     useNavigate,
+    Link,
   };
 });
 
