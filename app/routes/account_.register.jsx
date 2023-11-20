@@ -1,5 +1,6 @@
 import {json, redirect} from '@shopify/remix-oxygen';
-import {Form, Link, useActionData} from '@remix-run/react';
+import {useActionData} from '@remix-run/react';
+import AccountRegisterPage from '~/components/Account/AccountRegisterPage';
 
 export async function loader({context}) {
   const customerAccessToken = await context.session.get('customerAccessToken');
@@ -92,64 +93,8 @@ export const action = async ({request, context}) => {
 
 export default function Register() {
   const data = useActionData();
-  const error = data?.error || null;
-  return (
-    <div className="login">
-      <h1>Register.</h1>
-      <Form method="POST">
-        <fieldset>
-          <label htmlFor="email">Email address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            placeholder="Email address"
-            aria-label="Email address"
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            aria-label="Password"
-            minLength={8}
-            required
-          />
-          <label htmlFor="passwordConfirm">Re-enter password</label>
-          <input
-            id="passwordConfirm"
-            name="passwordConfirm"
-            type="password"
-            autoComplete="current-password"
-            placeholder="Re-enter password"
-            aria-label="Re-enter password"
-            minLength={8}
-            required
-          />
-        </fieldset>
-        {error ? (
-          <p>
-            <mark>
-              <small>{error}</small>
-            </mark>
-          </p>
-        ) : (
-          <br />
-        )}
-        <button type="submit">Register</button>
-      </Form>
-      <br />
-      <p>
-        <Link to="/account/login">Login →</Link>
-      </p>
-    </div>
-  );
+
+  return <AccountRegisterPage data={data} />;
 }
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/mutations/customerCreate
