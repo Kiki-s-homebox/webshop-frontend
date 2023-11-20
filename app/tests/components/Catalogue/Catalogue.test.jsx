@@ -143,7 +143,7 @@ jest.mock('@shopify/hydrogen', () => {
 });
 
 jest.mock('@remix-run/react', () => {
-  const Link = jest.fn(({children}) => <a>{children}</a>);
+  const Link = jest.fn(({children}) => <a href="/test">{children}</a>);
   const useNavigate = jest.fn();
   return {
     Link,

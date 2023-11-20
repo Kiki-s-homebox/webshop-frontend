@@ -8,8 +8,8 @@ export async function loader({context, request}) {
   const {products} = await storefront.query(ALL_PRODUCTS_QUERY);
   const {collections} = await storefront.query(ALL_COLLECTIONS_QUERY);
   return json({
-    products: products,
-    collections: collections,
+    products,
+    collections,
   });
 }
 
