@@ -105,9 +105,11 @@ const Catalogue = ({products, collections}) => {
         filteredCount={processedData.length}
         collections={collections.nodes.map((collection) => ({
           label: collection.id,
-          value: `${collection.title.charAt(0).toUpperCase()}${collection.title
-            .slice(1)
-            .toLowerCase()}`,
+          value: collection.title
+            ? `${collection.title.charAt(0).toUpperCase()}${collection.title
+                .slice(1)
+                .toLowerCase()}`
+            : `Unnamed collection`,
         }))}
         collectionFilter={collectionFilter}
         setCollectionFilter={setCollectionFilter}

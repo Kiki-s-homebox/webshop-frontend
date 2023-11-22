@@ -37,7 +37,7 @@ const FilterAndSort = ({
         <div className="catalogue-filter-container">
           <span>Filter: </span>
           <DropdownMenu
-            displayText={`Availability`}
+            displayText="Availability"
             options={availability}
             onOptionChosen={setAvailabilityFilter}
           />
@@ -137,7 +137,7 @@ const FilterAndSort = ({
             </div>
           </div>
           <DropdownMenu
-            displayText={`Collections`}
+            displayText="Collections"
             options={collections}
             onOptionChosen={setCollectionFilter}
           />
