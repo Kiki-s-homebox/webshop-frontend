@@ -29,7 +29,11 @@ export function HeaderCtas({isLoggedIn, cart}) {
       <HeaderMenuMobileToggle />
       <SearchToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        {isLoggedIn ? 'Account' : <BsPerson data-testid="BsPerson" style={{fontSize: '20px'}} />}
+        {isLoggedIn ? (
+          'Account'
+        ) : (
+          <BsPerson data-testid="BsPerson" style={{fontSize: '20px'}} />
+        )}
       </NavLink>
       <CartToggle cart={cart} />
     </nav>
@@ -66,7 +70,8 @@ export function CartToggle({cart}) {
   return (
     <Suspense fallback={<CartBadge count={0} />}>
       <Await resolve={cart}>
-        {/* istanbul ignore next */
+        {
+          /* istanbul ignore next */
           (cart) => {
             if (!cart) return <CartBadge count={0} />;
             return (

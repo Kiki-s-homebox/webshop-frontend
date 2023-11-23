@@ -18,9 +18,9 @@ jest.mock('@remix-run/react', () => {
 
   return {
     Await,
-    NavLink
-  }
-})
+    NavLink,
+  };
+});
 
 jest.mock('@shopify/hydrogen', () => {
   const CartForm = jest.fn();
@@ -36,8 +36,8 @@ jest.mock('@shopify/hydrogen', () => {
 jest.mock('~/components/Header/HeaderMenu', () => {
   const HeaderMenu = jest.fn();
   return {
-    HeaderMenu
-  }
+    HeaderMenu,
+  };
 });
 
 describe('HeaderMenuMobileToggle', () => {
@@ -85,22 +85,26 @@ describe('activeLinkStyle', () => {
 });
 
 describe('CartToggle', () => {
-    it('load CartToggle', () => {
-        render(<CartToggle />);
-        expect(screen.getByText('Mocked Await')).toBeInTheDocument();
-    })
+  it('load CartToggle', () => {
+    render(<CartToggle />);
+    expect(screen.getByText('Mocked Await')).toBeInTheDocument();
+  });
 });
 
 describe('HeaderCtas', () => {
-    it('load HeaderCtas with Account logged in', () => {
-        render(<HeaderCtas isLoggedIn={true} cart={0} />)
-        expect(screen.getByText('Mocked NavLink')).toBeInTheDocument();
-    })
-})
+  it('load HeaderCtas with Account logged in', () => {
+    render(<HeaderCtas isLoggedIn={true} cart={0} />);
+    expect(screen.getByText('Mocked NavLink')).toBeInTheDocument();
+  });
+});
 
 describe('Header', () => {
   it('load the main Header function', () => {
-    render(<Header header={jest.fn()} isLoggedIn={jest.fn()} cart={jest.fn()}  />)
-    expect(require('~/components/Header/HeaderMenu').HeaderMenu).toHaveBeenCalledTimes(1);
-  })
-})
+    render(
+      <Header header={jest.fn()} isLoggedIn={jest.fn()} cart={jest.fn()} />,
+    );
+    expect(
+      require('~/components/Header/HeaderMenu').HeaderMenu,
+    ).toHaveBeenCalledTimes(1);
+  });
+});
