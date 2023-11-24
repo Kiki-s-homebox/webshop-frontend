@@ -3,12 +3,21 @@ import {useLoaderData} from '@remix-run/react';
 
 const seo = ({data}) => ({
   title: `${data?.page?.title} | Kiki's home box`,
-  description: data?.page?.description,
+  description: data.page.body.includes('<p>')
+    ? getMetaDescriptionText({pageHtml: data.page.body})
+    : `This page is about ${data?.page?.title} in Kiki's Home Box.`,
 });
 
 export const handle = {
   seo,
 };
+
+function getMetaDescriptionText({pageHtml}) {
+  const tempElement = document.createElement('div');
+  tempElement.innerHTML = pageHtml;
+  const pageText = tempElement.querySelector('p').innerText;
+  return pageText.substring(0, 160);
+}
 
 export async function loader({params, context}) {
   if (!params.handle) {
