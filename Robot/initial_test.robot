@@ -1,9 +1,13 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+*** Variables ***
+${BROWSER}    headlesschrome
+${BASE_URL}    http://localhost:3000
+
 *** Test Cases ***
 Open Browser and Test API Connection
-    Open Browser    http://localhost:3000    Chrome
+    Open Browser    ${BASE_URL}    browser=${BROWSER}
     Maximize Browser Window
     Test API Connection
     Close Browser
