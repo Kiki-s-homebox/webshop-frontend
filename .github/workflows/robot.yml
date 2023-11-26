@@ -18,20 +18,17 @@ jobs:
         uses: actions/setup-python@v2
 
         with:
-            python-version: 3.x
+          python-version: 3.x
 
       - name: Install Chrome for Testing and its driver
         run: |
           npm i puppeteer
           npx @puppeteer/browsers install chrome@stable
 
-
       - name: Install dependencies
         run: |
           pip install robotframework
           pip install robotframework-seleniumlibrary
-
-
 
       - name: Start npm
         run: npm install && npm run dev-pipeline
