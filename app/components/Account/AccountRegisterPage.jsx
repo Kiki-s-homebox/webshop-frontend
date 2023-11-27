@@ -9,6 +9,26 @@ const AccountRegisterPage = ({data}) => {
       <h1 className="account-heading">Register</h1>
       <Form method="POST">
         <fieldset>
+        <LabelFloatingInput
+            id="firstName"
+            name="firstName"
+            type="text"
+            required
+            labelText="First name"
+            aria-label="first-name"
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
+          />
+          <LabelFloatingInput
+            id="lastName"
+            name="lastName"
+            type="text"
+            required
+            labelText="Last name"
+            aria-label="last-name"
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
+          />
           <LabelFloatingInput
             id="email"
             name="email"

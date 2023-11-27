@@ -129,7 +129,7 @@ const AccountProfilePage = ({account}) => {
                 filled
               />
               <ActionButton
-                text="Cancle"
+                text="Cancel"
                 onClick={() => setOpen(false)}
                 type={null}
               />

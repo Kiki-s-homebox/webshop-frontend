@@ -18,6 +18,8 @@ export const action = async ({request, context}) => {
 
   const {storefront, session} = context;
   const form = await request.formData();
+  const firstName = String(form.has('firstName') ? form.get('firstName') : '');
+  const lastName = String(form.has('lastName') ? form.get('lastName') : '');
   const email = String(form.has('email') ? form.get('email') : '');
   const password = form.has('password') ? String(form.get('password')) : null;
   const passwordConfirm = form.has('passwordConfirm')
@@ -27,10 +29,15 @@ export const action = async ({request, context}) => {
   const validPasswords =
     password && passwordConfirm && password === passwordConfirm;
 
+  const validNames = Boolean(firstName && lastName);
   const validInputs = Boolean(email && password);
   try {
     if (!validPasswords) {
       throw new Error('Passwords do not match');
+    }
+
+    if (!validNames) {
+      throw new Error('Please provide both first and last name.');
     }
 
     if (!validInputs) {
@@ -39,7 +46,7 @@ export const action = async ({request, context}) => {
 
     const {customerCreate} = await storefront.mutate(CUSTOMER_CREATE_MUTATION, {
       variables: {
-        input: {email, password},
+        input: {firstName, lastName, email, password},
       },
     });
 
