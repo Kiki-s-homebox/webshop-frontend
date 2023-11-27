@@ -70,7 +70,7 @@ const NewAddressForm = ({onCloseHandle}) => {
             text={stateForMethod('POST') !== 'idle' ? 'Creating' : 'Create'}
             filled
           />
-          <ActionButton text="Cancle" onClick={onCloseHandle} />
+          <ActionButton text="Cancel" onClick={onCloseHandle} />
         </div>
       )}
     </AddressForm>
