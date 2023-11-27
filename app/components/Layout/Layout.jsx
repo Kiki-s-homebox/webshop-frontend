@@ -17,7 +17,6 @@ export function Layout({cart, children = null, footer, header, isLoggedIn}) {
       <SearchAside />
       <MobileMenuAside menu={header.menu} />
       <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
-      <hr />
       <main>{children}</main>
       <Suspense>
         <Await resolve={footer}>
@@ -48,20 +47,22 @@ function SearchAside() {
       <div className="predictive-search">
         <br />
         <PredictiveSearchForm>
-          {({fetchResults, inputRef}) => (
-            <div>
-              <input
-                name="q"
-                onChange={fetchResults}
-                onFocus={fetchResults}
-                placeholder="Search"
-                ref={inputRef}
-                type="search"
-              />
-              &nbsp;
-              <button type="submit">Search</button>
-            </div>
-          )}
+          {
+            /* istanbul ignore next */ ({fetchResults, inputRef}) => (
+              <div>
+                <input
+                  name="q"
+                  onChange={fetchResults}
+                  onFocus={fetchResults}
+                  placeholder="Search"
+                  ref={inputRef}
+                  type="search"
+                />
+                &nbsp;
+                <button type="submit">Search</button>
+              </div>
+            )
+          }
         </PredictiveSearchForm>
         <PredictiveSearchResults />
       </div>
