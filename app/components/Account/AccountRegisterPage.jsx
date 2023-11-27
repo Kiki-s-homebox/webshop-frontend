@@ -9,7 +9,7 @@ const AccountRegisterPage = ({data}) => {
       <h1 className="account-heading">Register</h1>
       <Form method="POST">
         <fieldset>
-        <LabelFloatingInput
+          <LabelFloatingInput
             id="firstName"
             name="firstName"
             type="text"

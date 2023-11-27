@@ -89,7 +89,7 @@ const ExistingAddresses = ({addresses, defaultAddress}) => {
               {address.firstName} {address.lastName}
             </p>
             {address.formatted.map((info) => (
-              <p>{info}</p>
+              <p key={address.id}>{info}</p>
             ))}
             <ActionButton
               text="Edit"
