@@ -200,6 +200,16 @@ export async function validateCustomerAccessToken(
   return {isLoggedIn, headers};
 }
 
+export const handle = {
+  seo: {
+    title: `Kiki's Home Box`,
+    description:
+      "Discover KIKI'S Home Box, the ultimate solution for hassle-free relocation and settling in Finland. " +
+      'We provide comprehensive home essential kits and services tailored for movers. Explore our high-quality ' +
+      "products, convenience and affordability. Simplify your transition for AN EASIER START with KIKI'S Home Box.",
+  },
+};
+
 const MENU_FRAGMENT = `#graphql
   fragment MenuItem on MenuItem {
     id
