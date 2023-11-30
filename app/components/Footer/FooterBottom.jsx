@@ -21,6 +21,7 @@ const FooterBottom = ({shop}) => {
         <a
           href="https://www.shopify.com/?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
           target="_blank"
+          rel="noreferrer"
         >
           Power By shopify
         </a>
@@ -28,6 +29,7 @@ const FooterBottom = ({shop}) => {
           <Link
             className="footer-bottom-content-policy"
             to={`/policies/${policy.handle}`}
+            key={policy.title}
           >
             {policy.title}
           </Link>

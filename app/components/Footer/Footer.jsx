@@ -4,7 +4,6 @@ import FooterBottom from './FooterBottom';
 import './Footer.css';
 
 const Footer = ({menu, shop}) => {
-  const {paymentSettings} = shop;
   return (
     <footer className="footer">
       <FooterMenu menu={menu} />

@@ -23,6 +23,7 @@ const FooterSocial = () => {
           key={SOCIAL_MEDIA_MAPPING[key]}
           href={SOCIAL_MEDIA_MAPPING[key].url}
           target="_blank"
+          rel="noreferrer"
         >
           {SOCIAL_MEDIA_MAPPING[key].icon}
         </a>
