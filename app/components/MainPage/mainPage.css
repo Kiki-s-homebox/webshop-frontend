@@ -1,0 +1,5 @@
+.mainPage-image {
+  height: 400px;
+  object-fit: fill;
+  display: block;
+}

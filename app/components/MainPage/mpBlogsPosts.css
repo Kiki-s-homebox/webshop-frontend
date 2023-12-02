@@ -1,0 +1,23 @@
+.mpBlogsPosts-grid {
+  display: grid;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mpBlogsPosts-body-header {
+  display: grid;
+  place-items: center;
+}
+
+.mpBlogsPosts-body {
+  display: grid;
+  grid-gap: 2.5rem;
+  padding-top: 1rem;
+  transition: opacity 0.3s ease;
+  grid-template-columns: repeat(1, 1fr);
+  @media (min-width: 45em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
