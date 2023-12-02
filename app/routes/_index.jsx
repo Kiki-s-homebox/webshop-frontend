@@ -1,4 +1,4 @@
-import {defer} from '@shopify/remix-oxygen';
+import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import MainPage from '~/components/MainPage/MainPage';
 
@@ -9,19 +9,28 @@ export const meta = () => {
 export async function loader({context}) {
   const {storefront} = context;
 
-  const recommendedProducts = storefront.query(RECOMMENDED_PRODUCTS_QUERY);
+  const recommendedProducts = await storefront.query(
+    RECOMMENDED_PRODUCTS_QUERY,
+  );
   const {blogs} = await storefront.query(BLOGS_QUERY);
+  const bestSellers = await storefront.query(BEST_SELLING_PRODUCTS_QUERY);
 
-  const {nodes} = blogs;
-
-  return defer({recommendedProducts, nodes});
+  return json({
+    recommendedProducts: recommendedProducts.products.nodes,
+    blogs: blogs.nodes[0],
+    bestSellers: bestSellers.products.nodes,
+  });
 }
 
 export default function Homepage() {
-  const data = useLoaderData();
+  const {recommendedProducts, blogs, bestSellers} = useLoaderData();
   return (
     <div className="home">
-      <MainPage data={data} />
+      <MainPage
+        recommendedProducts={recommendedProducts}
+        blogs={blogs}
+        bestSellers={bestSellers}
+      />
     </div>
   );
 }
@@ -31,10 +40,20 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     id
     title
     handle
+    availableForSale
     priceRange {
       minVariantPrice {
         amount
         currencyCode
+      }
+    }
+    variants(first: 100) {
+      nodes {
+        id
+        availableForSale
+        price {
+          amount
+        }
       }
     }
     images(first: 1) {
@@ -52,6 +71,47 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     products(first: 3, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...RecommendedProduct
+      }
+    }
+  }
+`;
+
+const BEST_SELLING_PRODUCTS_QUERY = `#graphql
+  fragment BestSellingProduct on Product {
+    id
+    title
+    handle
+    availableForSale
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    variants(first: 100) {
+      nodes {
+        id
+        availableForSale
+        price {
+          amount
+        }
+      }
+    }
+    images(first: 1) {
+      nodes {
+        id
+        url
+        altText
+        width
+        height
+      }
+    }
+  }
+  query BestSellingProducts ($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 3, sortKey: BEST_SELLING, reverse: true) {
+      nodes {
+        ...BestSellingProduct
       }
     }
   }

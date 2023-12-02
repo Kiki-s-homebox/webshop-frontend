@@ -1,9 +1,7 @@
 .mpBlogsPosts-grid {
+  width: 80%;
   display: grid;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 0 3rem 0;
 }
 
 .mpBlogsPosts-body-header {
