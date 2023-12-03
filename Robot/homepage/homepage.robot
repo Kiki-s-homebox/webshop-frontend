@@ -16,7 +16,17 @@ Click Home Mover Kit checkout phase
     Wait for while
     Wait Until Page Contains    text=CART
     Close Browser
-
+    
+Edit options in order
+    Open Browser    ${BASE_URL}    ${BROWSER}
+    Maximize Browser Window
+    Click Element    xpath=//a[contains(@href, '/products/sauna-pack')]
+    Wait Until Page Contains    text=Our Sauna Pack is the perfect way to experience the unique sauna journey of Finland. Crafted with premium materials, this gift is ideal for newcomers looking to immerse themselves in the culture of the sauna capital of the world. With our Sauna Pack, you can enjoy the ultimate sauna experience with unparalleled comfort and luxury.
+    Click Button    Add to cart
+    Click Element   +
+    Wait for while
+    Wait Until Page Contains    text=CART
+    Close Browser
 
 *** Keywords ***
 
