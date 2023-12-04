@@ -76,11 +76,11 @@ export function CartToggle({cart}) {
           (cart) => {
             if (!cart) return <CartBadge count={0} />;
             return (
-            <CartBadge
-              count={cart.totalQuantity || 0}
-              setCartOpen={setCartOpen}
-            />
-          );
+              <CartBadge
+                count={cart.totalQuantity || 0}
+                setCartOpen={setCartOpen}
+              />
+            );
           }
         }
       </Await>

@@ -9,6 +9,7 @@ import {
   HeaderCtas,
   Header,
 } from '~/components/Header/Header';
+import {CartContext} from '~/components/Layout/Layout';
 
 jest.mock('../../../../public/kikiHomeBoxLogo.avif', () => jest.fn());
 
@@ -29,9 +30,9 @@ jest.mock('@shopify/hydrogen', () => {
   return {
     CartForm,
     Image,
-    Money
-  }
-})
+    Money,
+  };
+});
 
 jest.mock('~/components/Header/HeaderMenu', () => {
   const HeaderMenu = jest.fn();
@@ -56,7 +57,16 @@ describe('SearchToggle', () => {
 
 describe('CartBadge', () => {
   it('should rencer the count passed to the function', () => {
-    render(<CartBadge count={5} />);
+    const mockSetCartOpen = jest.fn();
+    const mockContextValue = {
+      setCartOpen: mockSetCartOpen,
+    };
+    render(
+      <CartContext.Provider value={mockContextValue}>
+        <CartBadge count={5} />
+      </CartContext.Provider>,
+    );
+
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByTestId('BsCart3')).toBeInTheDocument();
   });
@@ -86,22 +96,45 @@ describe('activeLinkStyle', () => {
 
 describe('CartToggle', () => {
   it('load CartToggle', () => {
-    render(<CartToggle />);
+    const mockSetCartOpen = jest.fn();
+    const mockContextValue = {
+      setCartOpen: mockSetCartOpen,
+    };
+
+    render(
+      <CartContext.Provider value={mockContextValue}>
+        <CartToggle />
+      </CartContext.Provider>,
+    );
     expect(screen.getByText('Mocked Await')).toBeInTheDocument();
   });
 });
 
 describe('HeaderCtas', () => {
   it('load HeaderCtas with Account logged in', () => {
-    render(<HeaderCtas isLoggedIn={true} cart={0} />);
+    const mockSetCartOpen = jest.fn();
+    const mockContextValue = {
+      setCartOpen: mockSetCartOpen,
+    };
+    render(
+      <CartContext.Provider value={mockContextValue}>
+        <HeaderCtas isLoggedIn={true} cart={0} />
+      </CartContext.Provider>,
+    );
     expect(screen.getByText('Mocked NavLink')).toBeInTheDocument();
   });
 });
 
 describe('Header', () => {
   it('load the main Header function', () => {
+    const mockSetCartOpen = jest.fn();
+    const mockContextValue = {
+      setCartOpen: mockSetCartOpen,
+    };
     render(
-      <Header header={jest.fn()} isLoggedIn={jest.fn()} cart={jest.fn()} />,
+      <CartContext.Provider value={mockContextValue}>
+        <Header header={jest.fn()} isLoggedIn={jest.fn()} cart={jest.fn()} />
+      </CartContext.Provider>,
     );
     expect(
       require('~/components/Header/HeaderMenu').HeaderMenu,
