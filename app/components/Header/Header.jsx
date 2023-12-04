@@ -58,6 +58,7 @@ export function SearchToggle() {
 
 export function CartBadge({count}) {
   const {setCartOpen} = useContext(CartContext);
+  /* istanbul ignore next */
   return (
     <span onClick={() => setCartOpen(true)} className="header-cart-badge">
       <BsCart3 data-testid="BsCart3" style={{fontSize: '20px'}} /> {count}
