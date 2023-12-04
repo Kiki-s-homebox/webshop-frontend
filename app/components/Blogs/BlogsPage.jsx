@@ -14,7 +14,7 @@ const BlogsPage = ({blogs, recommendedProducts}) => {
     const firstPageIndex = (currentPage - 1) * BLOGS_PER_PAGE;
     const lastPageIndex = firstPageIndex + BLOGS_PER_PAGE;
     return blogs.articles.nodes.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, blogs.articles.nodes]);
 
   return (
     <div className="blogs-flex">
