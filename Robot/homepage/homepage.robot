@@ -27,7 +27,16 @@ Edit options in order
     Wait Until Page Contains    text=CART
     Close Browser
 
+Test search
+
+    Open Browser    ${BASE_URL}    ${BROWSER}
+    Maximize Browser Window
+    Wait for while
+    Click Element  xpath=//a[@href='#search-aside']
+    
+    Close Browser
+
 *** Keywords ***
 
 Wait for while
-    Sleep    5
+    Sleep    3
