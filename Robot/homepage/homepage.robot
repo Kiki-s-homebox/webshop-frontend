@@ -27,13 +27,30 @@ Edit options in order
     Wait Until Page Contains    text=CART
     Close Browser
 
-Test search
-
+Test search and finding the product page
     Open Browser    ${BASE_URL}    ${BROWSER}
     Maximize Browser Window
     Wait for while
     Click Element  xpath=//a[@href='#search-aside']
+    Input Text  name=q  Toilet
+    Wait for while
+    Click Element  xpath=//span[contains(text(), 'Toilet Brush')]/ancestor::a
+    Wait Until Page Contains    text=This Toilet Brush is made of durable plastic and has a bamboo handle for easy and comfortable use. Its size of 116x116x125mm makes it an ideal fit for your bathroom, while the handle at 116x116x360mm provides optimal grip. Its sleek black colour will add a modern touch to your home.
+    Close Browser
+
+Test Login page and login
+    Open Browser    ${BASE_URL}    ${BROWSER}
+    Maximize Browser Window
+    Wait for while
+    Click Element  xpath=//a[@href='/account']
+    Wait Until Page Contains    text=Sign in
     
+    Input Text  id=email  testi@gmail.com
+    Input Text  id=password  testi123
+
+    Click Button    Sign in
+    Wait Until Page Contains   text=Welcome to your account.
+    Click Button    Sign out
     Close Browser
 
 *** Keywords ***
