@@ -14,7 +14,7 @@ Click Home Mover Kit checkout phase
     Wait Until Page Contains    text=Start life in your new home the easy way with our Home Mover kit. Packed with stylish, high-quality essentials, this kit offers everything you need at an affordable price, without the hassle of store and product searches. Rest assured that every product has been tested and approved for your peace of mind. Move in and start living with confidence!
     Click Button    Add to cart
     Wait for while
-    Wait Until Page Contains    text=CART
+    Wait Until Page Contains    text=Your cart
     Close Browser
     
 Edit options in order
@@ -24,7 +24,7 @@ Edit options in order
     Wait Until Page Contains    text=Our Sauna Pack is the perfect way to experience the unique sauna journey of Finland. Crafted with premium materials, this gift is ideal for newcomers looking to immerse themselves in the culture of the sauna capital of the world. With our Sauna Pack, you can enjoy the ultimate sauna experience with unparalleled comfort and luxury.
     Click Button    Add to cart
     Wait for while
-    Wait Until Page Contains    text=CART
+    Wait Until Page Contains    text=Your cart
     Close Browser
 
 Test search and finding the product page
@@ -47,10 +47,10 @@ Test Login page and login
     
     Input Text  id=email  testi@gmail.com
     Input Text  id=password  testi123
-
     Click Button    Sign in
+    Wait for while
     Wait Until Page Contains   text=Welcome to your account.
-    Click Button    Sign out
+    Click Button    Log out
     Close Browser
 
 *** Keywords ***
