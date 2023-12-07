@@ -41,43 +41,49 @@ div ul {
   list-style: inside;
 }
 
-.page #contact-us-form {
+.contact-us {
+  padding-top: 10px;
+  padding-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-button {
-  font-size: 1em;
+.contact-us .form-group {
+  padding-top: 11px;
+}
+
+.contact-us button {
+  font-size: 1.25em;
   font-family: inherit;
   color: #fff;
   background-color: #754e2f;
-  width: 10vmin;
-  height: 4vmin;
+  width: 15vmin;
+  height: 5vmin;
   border-radius: 5px;
 }
 
-input {
+.contact-us input {
   font-size: 1em;
   min-width: 35vmin;
-  height: 30px;
+  height: 40px;
 }
 
-form {
+.contact-us form {
   position: relative;
 }
 
-label {
+.contact-us label {
   position: absolute;
   font-size: larger;
-  left: 11px;
-  top: 11px;
+  left: 5px;
+  top: 17px;
   transform-origin: 0 0;
 }
 
 label[for='form-email'] {
-  top: 70px;
+  top: 75px;
 }
 
 label[for='form-phonenumber'] {
@@ -85,8 +91,8 @@ label[for='form-phonenumber'] {
 }
 
 label[for='form-comment'] {
-  top: 185px;
-  left: 8px;
+  top: 196px;
+  left: 9px;
 }
 
 #form-comment {
@@ -94,20 +100,20 @@ label[for='form-comment'] {
   padding-left: 7px;
   padding-right: 7px;
   height: 100px;
-  min-width: 35vmin;
+  min-width: 34vmin;
   font-family: inherit;
   font-size: 1em;
 }
 
-input:focus + label,
+.contact-us input:focus + label,
 input:not(:placeholder-shown) + label {
-  transform: translateY(-0.45em) scale(0.8);
+  transform: translateY(-0.44em) scale(0.75);
   transition: transform 75ms ease-in-out;
 }
 
-textarea:focus + label,
+.contact-us textarea:focus + label,
 textarea:not(:placeholder-shown) + label {
-  transform: translateY(-0.45em) scale(0.8);
+  transform: translateY(-0.53em) scale(0.75);
   transition: transform 75ms ease-in-out;
 }
 
