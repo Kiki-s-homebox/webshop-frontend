@@ -5,7 +5,7 @@ import {Link} from '@remix-run/react';
 import {useState, useMemo} from 'react';
 import RecommendedProducts from '../RecommendedProducts/RecommendedProducts';
 
-const BLOGS_PER_PAGE = 4;
+const BLOGS_PER_PAGE = 6;
 
 const BlogsPage = ({blogs, recommendedProducts}) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,11 +20,11 @@ const BlogsPage = ({blogs, recommendedProducts}) => {
     <div className="blogs-flex">
       <h1>{blogs.title}</h1>
       <div className="blogs-grid">
-        {currentData.map((node) => (
+        {currentData.map((node, idx) => (
           <Link
-            key={`blog-${node.blog.handle}`}
             to={`/blogs/${node.blog.handle}/${node.handle}`}
             className="blogs-a"
+            key={`blog-${node.handle}-${idx}`}
           >
             <BlogCard
               key={node.id}

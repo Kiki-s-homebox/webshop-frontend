@@ -1,5 +1,6 @@
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
+import StaticPage from '~/components/StaticPage/StaticPage';
 
 const seo = ({data}) => ({
   title: `${data?.page?.title} | Kiki's home box`,
@@ -40,14 +41,7 @@ export async function loader({params, context}) {
 export default function Page() {
   const {page} = useLoaderData();
 
-  return (
-    <div className="page">
-      <header>
-        <h1>{page.title}</h1>
-      </header>
-      <main dangerouslySetInnerHTML={{__html: page.body}} />
-    </div>
-  );
+  return <StaticPage page={page} />;
 }
 
 const PAGE_QUERY = `#graphql
@@ -60,6 +54,7 @@ const PAGE_QUERY = `#graphql
     page(handle: $handle) {
       id
       title
+      handle
       body
       seo {
         description

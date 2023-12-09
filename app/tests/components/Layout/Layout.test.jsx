@@ -5,16 +5,13 @@ import {Layout} from '../../../components/Layout/Layout';
 jest.mock('../../../components/Cart/Cart', () => {
   return {
     __esModule: true,
-    CartMain: jest.fn(() => <p>Mocked MainCart</p>),
+    CartComponent: jest.fn(() => <p>Mocked CartComponent</p>),
   };
 });
 
-jest.mock('../../../components/Footer/Footer', () => {
-  return {
-    __esModule: true,
-    Footer: jest.fn(() => <p>Mocked Main Cart</p>),
-  };
-});
+jest.mock('../../../components/Footer/Footer', () =>
+  jest.fn(() => <p>Mocked Main Cart</p>),
+);
 
 jest.mock('../../../components/Header/Header', () => {
   return {
