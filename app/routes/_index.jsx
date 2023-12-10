@@ -6,9 +6,9 @@ const seo = ({data}) => ({
   title: `Kiki's homebox | All home essentials in one box`,
 
   description:
-      "Discover KIKI'S Home Box, the ultimate solution for hassle-free relocation and settling in Finland. " +
-      'We provide comprehensive home essential kits and services tailored for movers. Explore our high-quality ' +
-      "products, convenience and affordability. Simplify your transition for AN EASIER START with KIKI'S Home Box.",
+    "Discover KIKI'S Home Box, the ultimate solution for hassle-free relocation and settling in Finland. " +
+    'We provide comprehensive home essential kits and services tailored for movers. Explore our high-quality ' +
+    "products, convenience and affordability. Simplify your transition for AN EASIER START with KIKI'S Home Box.",
 });
 
 export const handle = {
