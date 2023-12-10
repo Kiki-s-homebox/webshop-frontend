@@ -24,10 +24,10 @@ describe('Static Page component', () => {
     const page = {
       title: 'Not Contact Us',
       body: 'Hello World',
-      handle: 'not-contact'
+      handle: 'not-contact',
     };
     render(<StaticPage page={page} />);
-    
+
     expect(screen.getByText('Not Contact Us')).toBeInTheDocument();
     expect(screen.getByText('Hello World')).toBeInTheDocument();
   });
