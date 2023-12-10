@@ -10,8 +10,8 @@ const seo = ({data}) => ({
   title: `${data?.product?.title} | Kiki's Home Box`,
 
   description:
-      `${data?.product?.description.split('.')[0]}` +
-      `. Buy ${data?.product?.title.toLowerCase()} from Kiki's Home Box!`,
+    `${data?.product?.description.split('.')[0]}` +
+    `. Buy ${data?.product?.title.toLowerCase()} from Kiki's Home Box!`,
 });
 
 export const handle = {
