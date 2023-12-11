@@ -19,7 +19,7 @@ const BlogCard = ({image, title, body}) => {
   };
 
   return (
-    <div style={{backgroundColor: '#754E2F'}}>
+    <div style={{backgroundColor: '#855832'}}>
       <img src={imageUrl} className="blog-card-image" alt={altText} />
       <div className="blog-card-title">{title}</div>
       <div

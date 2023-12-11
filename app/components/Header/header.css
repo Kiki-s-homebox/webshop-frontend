@@ -15,13 +15,9 @@
 }
 
 .header-top {
-  background: #754e2f;
+  background: #a57a4e;
   height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.header-cart-badge:hover {
-  cursor: pointer;
 }

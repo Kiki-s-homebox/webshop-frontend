@@ -26,12 +26,15 @@
 }
 
 .blogs-a {
-  background-color: #754e2f;
+  background-color: #855832;
   width: 100%;
   overflow: hidden;
   position: relative;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   height: 100%;
   @media (min-width: 747px) {
     width: 100%;

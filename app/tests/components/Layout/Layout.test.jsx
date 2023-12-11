@@ -5,7 +5,7 @@ import {Layout} from '../../../components/Layout/Layout';
 jest.mock('../../../components/Cart/Cart', () => {
   return {
     __esModule: true,
-    CartComponent: jest.fn(() => <p>Mocked CartComponent</p>),
+    CartMain: jest.fn(() => <p>Mocked MainCart</p>),
   };
 });
 

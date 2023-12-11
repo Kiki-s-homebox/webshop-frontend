@@ -1,40 +1,43 @@
 import {Await} from '@remix-run/react';
-import {Suspense, createContext, useState} from 'react';
+import {Suspense} from 'react';
 import {Aside} from '~/components/Aside/Aside';
 import {Footer} from '~/components/Footer/Footer';
 import {Header} from '~/components/Header/Header';
-import {CartComponent} from '~/components/Cart/Cart';
+import {CartMain} from '~/components/Cart/Cart';
 import {
   PredictiveSearchForm,
   PredictiveSearchResults,
 } from '~/components/Search/Search';
 import {HeaderMenu} from '../Header/HeaderMenu';
 
-export const CartContext = createContext(null);
-
 export function Layout({cart, children = null, footer, header, isLoggedIn}) {
-  const [cartOpen, setCartOpen] = useState(false);
-
   return (
-    <CartContext.Provider
-      value={{
-        cartOpen,
-        setCartOpen,
-      }}
-    >
-      <div className={`${cartOpen ? 'disable-scroll' : ''}`}>
-        <CartComponent cart={cart} layout="aside" />
-        <SearchAside />
-        <MobileMenuAside menu={header.menu} />
-        <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
-        <main>{children}</main>
-        <Suspense>
-          <Await resolve={footer}>
-            {(footer) => <Footer menu={footer.menu} />}
-          </Await>
-        </Suspense>
-      </div>
-    </CartContext.Provider>
+    <>
+      <CartAside cart={cart} />
+      <SearchAside />
+      <MobileMenuAside menu={header.menu} />
+      <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
+      <main>{children}</main>
+      <Suspense>
+        <Await resolve={footer}>
+          {(footer) => <Footer menu={footer.menu} />}
+        </Await>
+      </Suspense>
+    </>
+  );
+}
+
+function CartAside({cart}) {
+  return (
+    <Aside id="cart-aside" heading="CART">
+      <Suspense fallback={<p>Loading cart ...</p>}>
+        <Await resolve={cart}>
+          {(cart) => {
+            return <CartMain cart={cart} layout="aside" />;
+          }}
+        </Await>
+      </Suspense>
+    </Aside>
   );
 }
 
