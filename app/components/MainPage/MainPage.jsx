@@ -1,5 +1,5 @@
 import MainPageBlogPosts from './MainPageBlogPosts';
-import image from '../../../public/bannersketch4.png';
+import image from '../../../public/bannerAvif.avif';
 import './mainPage.css';
 import MainPageProductFragment from './MainPageProductFragment';
 import MainPageHero from './MainPageHero';
